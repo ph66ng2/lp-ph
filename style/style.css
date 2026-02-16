@@ -1,0 +1,657 @@
+/* ==========================================================
+   PORTFOLIO -- Estetica Nord
+   Paleta de cores Nord:
+     Polar Night:  #2E3440  #3B4252  #434C5E  #4C566A
+     Snow Storm:   #D8DEE9  #E5E9F0  #ECEFF4
+     Frost:        #8FBCBB  #88C0D0  #81A1C1  #5E81AC
+     Aurora:       #BF616A  #D08770  #EBCB8B  #A3BE8C  #B48EAD
+   ========================================================== */
+
+/* ---- Reset e Base ---- */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: "IBM Plex Mono", monospace;
+    background-color: #2E3440;
+    color: #D8DEE9;
+    line-height: 1.7;
+    overflow-x: hidden;
+
+    /* Imagem de montanha como fundo fixo */
+    background-image: url("../assets/montanha.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* ---- Popup de Selecao de Idioma ---- */
+
+.lang-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 52, 64, 0.95);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.lang-popup.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lang-popup-content {
+    background-color: #3B4252;
+    border: 1px solid #434C5E;
+    padding: 48px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.lang-popup-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #88C0D0;
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+}
+
+.lang-popup-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.lang-btn {
+    padding: 12px 32px;
+    border: 1px solid #88C0D0;
+    background-color: transparent;
+    color: #88C0D0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: #88C0D0;
+    color: #2E3440;
+}
+
+
+/* ---- Utilitarios ---- */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #88C0D0;
+    margin-bottom: 48px;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #434C5E;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+/* ---- Navbar ---- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background-color: rgba(46, 52, 64, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #3B4252;
+    transition: padding 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estado compacto ao rolar a pagina */
+.navbar.scrolled {
+    padding: 10px 40px;
+    background-color: rgba(46, 52, 64, 0.98);
+}
+
+.nav-brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ECEFF4;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #81A1C1;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+/* Barra inferior ao passar o mouse */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #88C0D0;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #88C0D0;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Botao de troca de idioma na navbar */
+.lang-toggle {
+    padding: 6px 12px;
+    border: 1px solid #4C566A;
+    background-color: transparent;
+    color: #81A1C1;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    margin-right: 16px;
+}
+
+.lang-toggle:hover {
+    border-color: #88C0D0;
+    color: #88C0D0;
+}
+
+/* Botao hamburguer para mobile */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background-color: #D8DEE9;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animacao do botao hamburguer quando aberto */
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Hero ---- */
+
+.hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 24px;
+}
+
+/* Overlay escuro apenas sobre a secao hero */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 52, 64, 0.75);
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.hero-greeting {
+    font-size: 0.9rem;
+    color: #81A1C1;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.hero-name {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #88C0D0;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero-name-text {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Cursor estilo terminal */
+.hero-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background-color: #88C0D0;
+    animation: cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes cursor-blink {
+    0%,
+    49% {
+        opacity: 1;
+    }
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.hero-role {
+    font-size: 1rem;
+    color: #5E81AC;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 12px 32px;
+    border: 1px solid #88C0D0;
+    color: #88C0D0;
+    text-decoration: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-cta:hover {
+    background-color: #88C0D0;
+    color: #2E3440;
+}
+
+.hero-actions {
+    display: inline-flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ---- Sobre ---- */
+
+.about-content {
+    max-width: 700px;
+    background-color: rgba(59, 66, 82, 0.7);
+    border: 1px solid #434C5E;
+    padding: 32px;
+    backdrop-filter: blur(4px);
+}
+
+.about-content p {
+    font-size: 0.95rem;
+    color: #81A1C1;
+    margin-bottom: 32px;
+    line-height: 1.9;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.skill-category {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skill-category-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #88C0D0;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    border-bottom: 1px solid #434C5E;
+    padding-bottom: 8px;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: #3B4252;
+    color: #8FBCBB;
+    font-size: 0.78rem;
+    font-family: "IBM Plex Mono", monospace;
+    letter-spacing: 0.5px;
+    border: 1px solid #434C5E;
+    width: fit-content;
+}
+
+.skill-tag i {
+    font-size: 1rem;
+    color: #88C0D0;
+}
+
+/* ---- Cards de Projeto ---- */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.project-card {
+    background-color: rgba(59, 66, 82, 0.7);
+    border: 1px solid #434C5E;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: #88C0D0;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-icon {
+    font-size: 1.4rem;
+    color: #88C0D0;
+    font-weight: 300;
+}
+
+.card-links {
+    display: flex;
+    gap: 16px;
+}
+
+.card-link {
+    color: #D8DEE9;
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    transition: color 0.3s ease;
+}
+
+.card-link:hover {
+    color: #88C0D0;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #88C0D0;
+}
+
+.card-description {
+    font-size: 0.85rem;
+    color: #81A1C1;
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.card-tags span {
+    font-size: 0.72rem;
+    color: #8FBCBB;
+    font-family: "IBM Plex Mono", monospace;
+    letter-spacing: 0.5px;
+}
+
+/* Separador entre tags */
+.card-tags span:not(:last-child)::after {
+    content: " /";
+    color: #4C566A;
+}
+
+/* ---- Contato ---- */
+
+.contact {
+    text-align: center;
+    position: relative;
+}
+
+/* Overlay escuro que reaparece na secao de contato */
+.contact-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 52, 64, 0.75);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.contact .container {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-text {
+    font-size: 0.95rem;
+    color: #81A1C1;
+    margin-bottom: 32px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 10px 28px;
+    border: 1px solid #4C566A;
+    color: #D8DEE9;
+    text-decoration: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-btn:hover {
+    border-color: #88C0D0;
+    color: #88C0D0;
+}
+
+/* ---- Rodape ---- */
+
+.footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid #3B4252;
+    font-size: 0.75rem;
+    color: #5E81AC;
+    letter-spacing: 1px;
+}
+
+/* Overlay no rodape vinculado ao mesmo efeito da secao contato */
+.footer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 52, 64, 0.75);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.footer p {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---- Animacao de entrada dos elementos ---- */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- Responsivo ---- */
+
+@media (max-width: 768px) {
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        background-color: #2E3440;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        border-left: 1px solid #3B4252;
+        transition: right 0.3s ease;
+    }
+
+    /* Menu mobile aberto */
+    .nav-links.open {
+        right: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .hero-name {
+        font-size: 2.2rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hero-name {
+        font-size: 1.8rem;
+    }
+
+    .section {
+        padding: 72px 0;
+    }
+
+    .navbar {
+        padding: 14px 20px;
+    }
+}
