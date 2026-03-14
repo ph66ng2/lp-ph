@@ -1,85 +1,139 @@
-/* ==========================================================
-   PORTFOLIO -- Scripts
-   Funcoes de interacao: navbar, menu mobile, scroll e 
-   animacoes de entrada dos elementos.
-   ========================================================== */
-
 (function () {
     "use strict";
 
-    /* --------------------------------------------------
-       Objeto de traducoes para internacionalizacao.
-       Cada chave corresponde ao atributo data-i18n 
-       dos elementos HTML.
-       -------------------------------------------------- */
     var translations = {
-        "pt": {
-            "navHome": "Inicio",
-            "navAbout": "Stacks",
-            "navProjects": "Projetos",
-            "navContact": "Contato",
-            "heroGreeting": "Ola, eu sou",
-            "heroRole": "Desenvolvedor Full Stack",
-            "heroResume": "Resume",
-            "heroProjects": "Ver Projetos",
-            "heroContact": "Contato",
-            "sectionStacks": "Stacks",
-            "aboutText": "Stacks e tecnologias que domino e utilizo frequentemente em meus projetos, abrangendo desde linguagens de programacao e frameworks ate ferramentas de desenvolvimento e bancos de dados.",
-            "catLanguages": "Linguagens",
-            "catFrameworks": "Frameworks",
-            "catFeatures": "Funcionalidades",
-            "catDatabases": "Databases",
-            "sectionProjects": "Projetos",
-            "proj1Title": "Projeto Alpha",
-            "proj1Desc": "Aplicacao web completa com autenticacao, dashboard interativo e integracao com APIs externas.",
-            "proj2Desc": "Sistema desktop nativo desenvolvido em Tauri + React para gestao completa de assistencia tecnica de impressoras, incluindo controle de equipamentos, estoque de insumos, workflow de manutencao e automacao de comunicacao com clientes.",
-            "proj3Desc": "Solucao desktop desenvolvida em Tauri e React/TypeScript para automatizacao completa do ciclo de cobrancas via boletos bancarios, eliminando processos manuais e integrando-se diretamente com a infraestrutura bancaria do Sicredi.",
-            "proj4Title": "Projeto Delta",
-            "proj4Desc": "CLI para automacao de tarefas repetitivas no ambiente de desenvolvimento, com plugins extensiveis.",
-            "proj5Title": "Projeto Epsilon",
-            "proj5Desc": "Dashboard de monitoramento em tempo real com graficos interativos e sistema de alertas.",
-            "proj6Title": "Projeto Zeta",
-            "proj6Desc": "Microservico de processamento de imagens com fila de tarefas e armazenamento em nuvem.",
-            "sectionContact": "Contato",
-            "contactText": "Interessado em trabalhar junto? Entre em contato.",
-            "footerText": "ph"
+        pt: {
+            navHome: "Início",
+            navAbout: "Sobre",
+            navSkills: "Habilidades",
+            navProjects: "Projetos",
+            navContact: "Contato",
+            langToggleLabel: "Mudar idioma",
+            navToggleLabel: "Menu",
+
+            heroGreeting: "Olá, eu sou",
+            heroRole: "Full Stack com foco em Mobile e automação",
+            heroPitch: "Desenvolvimento de aplicativos, sistemas internos e fluxos de automação que reduzem tarefas manuais e aceleram a operação.",
+            heroPrimaryCta: "Fale comigo",
+            heroProjects: "Ver Projetos",
+
+            aboutTitle: "Como eu gero valor",
+            aboutText: "Traduzo processos operacionais em produtos digitais práticos, com foco em estabilidade, produtividade da equipe e tempo de resposta menor para o negócio.",
+            aboutPillar1Title: "Apps mobile orientados a campo",
+            aboutPillar1Desc: "Fluxos offline, integração com hardware e UX direta para uso diário.",
+            aboutPillar2Title: "Sistemas internos para operação",
+            aboutPillar2Desc: "Painel, controle de status e automação de etapas repetitivas.",
+            aboutPillar3Title: "Entrega ponta a ponta",
+            aboutPillar3Desc: "Do desenho técnico até deploy, com monitoramento e evolução contínua.",
+
+            skillsTitle: "Stack técnica",
+            skillsIntro: "Combinação de stack web, mobile e backend para construir produtos de uso real, com performance e manutenção simples.",
+            skillFrontend: "Frontend",
+            skillBackend: "Backend",
+            skillMobile: "Mobile",
+            skillTools: "Ferramentas",
+
+            sectionProjects: "Projetos em destaque",
+            projectsIntro: "Seleções com foco em impacto operacional: menos retrabalho, processos previsíveis e ganho de velocidade para o time.",
+            proj1Badge: "Destaque mobile",
+            proj1Title: "ZPL Template Printer",
+            proj1Desc: "Aplicativo Flutter para criação de etiquetas ZPL em campo, com conexão Bluetooth em impressoras térmicas e configuração rápida de modelos por contexto de uso.",
+            proj1Highlight1: "Fluxo focado em operação logística",
+            proj1Highlight2: "Edição dinâmica de layout sem retrabalho",
+            proj1Highlight3: "Execução local com baixa dependência externa",
+
+            proj2Badge: "Desktop operacional",
+            proj2Title: "AutoOs",
+            proj2Desc: "Sistema desktop em Tauri + React para assistência técnica, consolidando abertura de ordens, controle de itens, status de manutenção e comunicação com clientes.",
+            proj2Highlight1: "Visão única de todo o ciclo da OS",
+            proj2Highlight2: "Fluxo padronizado para equipe técnica",
+
+            proj3Badge: "Automação financeira",
+            proj3Title: "AutoBo",
+            proj3Desc: "Solução desktop em Tauri + React/TypeScript para automatização de cobranças via boletos, reduzindo etapas manuais e melhorando previsibilidade financeira.",
+            proj3Highlight1: "Automação ponta a ponta do ciclo de cobrança",
+            proj3Highlight2: "Integração com serviços externos e validações",
+            modalCloseLabel: "Fechar",
+            modalImageAlt: "Imagem do Projeto",
+            modalRepo: "Repositório",
+            modalDemo: "Demo",
+
+            sectionContact: "Vamos construir algo útil?",
+            contactText: "Se você procura alguém para transformar processo manual em produto digital, podemos conversar.",
+            contactAvailability: "Disponível para freelas estratégicos e oportunidades full stack/mobile.",
+            contactEmail: "Enviar email",
+            contactGitHub: "GitHub",
+            contactLinkedIn: "LinkedIn",
+
+            footerText: "Paulo Medeiros | Full Stack & Mobile"
         },
-        "en": {
-            "navHome": "Home",
-            "navAbout": "Stacks",
-            "navProjects": "Projects",
-            "navContact": "Contact",
-            "heroGreeting": "Hello, I am",
-            "heroRole": "Full Stack Developer",
-            "heroResume": "Resume",
-            "heroProjects": "View Projects",
-            "heroContact": "Contact",
-            "sectionStacks": "Stacks",
-            "aboutText": "Stacks and technologies I master and frequently use in my projects, ranging from programming languages and frameworks to development tools and databases.",
-            "catLanguages": "Languages",
-            "catFrameworks": "Frameworks",
-            "catFeatures": "Features",
-            "catDatabases": "Databases",
-            "sectionProjects": "Projects",
-            "proj1Title": "Project Alpha",
-            "proj1Desc": "Complete web application with authentication, interactive dashboard, and external API integrations.",
-            "proj2Desc": "Native desktop system built with Tauri + React for complete printer technical assistance management, including equipment control, supplies inventory, maintenance workflow, and automated customer communication.",
-            "proj3Desc": "Desktop solution developed in Tauri and React/TypeScript for complete automation of bank slip billing cycles, eliminating manual processes and integrating directly with Sicredi's banking infrastructure.",
-            "proj4Title": "Project Delta",
-            "proj4Desc": "CLI for automating repetitive tasks in the development environment, with extensible plugins.",
-            "proj5Title": "Project Epsilon",
-            "proj5Desc": "Real-time monitoring dashboard with interactive charts and alert system.",
-            "proj6Title": "Project Zeta",
-            "proj6Desc": "Image processing microservice with task queue and cloud storage.",
-            "sectionContact": "Contact",
-            "contactText": "Interested in working together? Get in touch.",
-            "footerText": "ph"
+        en: {
+            navHome: "Home",
+            navAbout: "About",
+            navSkills: "Skills",
+            navProjects: "Projects",
+            navContact: "Contact",
+            langToggleLabel: "Change language",
+            navToggleLabel: "Menu",
+
+            heroGreeting: "Hello, I am",
+            heroRole: "Full Stack focused on Mobile and automation",
+            heroPitch: "I build apps, internal systems and automation flows that reduce manual tasks and speed up operations.",
+            heroPrimaryCta: "Discuss a project",
+            heroProjects: "View case studies",
+
+            aboutTitle: "How I create value",
+            aboutText: "I transform operational processes into practical digital products, focused on stability, team productivity and faster response time for the business.",
+            aboutPillar1Title: "Field-oriented mobile apps",
+            aboutPillar1Desc: "Offline-first flows, hardware integration and direct UX for daily use.",
+            aboutPillar2Title: "Internal systems for operations",
+            aboutPillar2Desc: "Dashboards, status control and automation for repetitive steps.",
+            aboutPillar3Title: "End-to-end delivery",
+            aboutPillar3Desc: "From technical design to deployment, with monitoring and continuous improvement.",
+
+            skillsTitle: "Technical stack",
+            skillsIntro: "A blend of web, mobile and backend technologies to build real-world products with performance and maintainability.",
+            skillFrontend: "Frontend",
+            skillBackend: "Backend",
+            skillMobile: "Mobile",
+            skillTools: "Tools",
+
+            sectionProjects: "Featured projects",
+            projectsIntro: "Selections focused on operational impact: less rework, more predictable processes and faster team execution.",
+            proj1Badge: "Mobile highlight",
+            proj1Title: "ZPL Template Printer",
+            proj1Desc: "Flutter app for creating ZPL labels in the field, with Bluetooth thermal printer connection and fast template setup by use context.",
+            proj1Highlight1: "Flow designed for logistics operations",
+            proj1Highlight2: "Dynamic layout editing without rework",
+            proj1Highlight3: "Local execution with low external dependency",
+
+            proj2Badge: "Operational desktop",
+            proj2Title: "AutoOs",
+            proj2Desc: "Desktop system built with Tauri + React for technical support operations, centralizing work orders, inventory, maintenance status and customer communication.",
+            proj2Highlight1: "Single view of the full work-order cycle",
+            proj2Highlight2: "Standardized flow for technical teams",
+
+            proj3Badge: "Financial automation",
+            proj3Title: "AutoBo",
+            proj3Desc: "Desktop solution built with Tauri + React/TypeScript to automate boleto billing flows, reducing manual work and improving financial predictability.",
+            proj3Highlight1: "End-to-end billing cycle automation",
+            proj3Highlight2: "Integration with external services and validations",
+            modalCloseLabel: "Close",
+            modalImageAlt: "Project image",
+            modalRepo: "Repository",
+            modalDemo: "Demo",
+
+            sectionContact: "Let us build something useful",
+            contactText: "If you need someone to turn manual processes into digital products, we should talk.",
+            contactAvailability: "Open to strategic freelance work and full stack/mobile opportunities.",
+            contactEmail: "Send email",
+            contactGitHub: "GitHub",
+            contactLinkedIn: "LinkedIn",
+
+            footerText: "Paulo Medeiros | Full Stack & Mobile"
         }
     };
 
-    /* --------------------------------------------------
-       Selecao de elementos do DOM utilizados nas funcoes.
-       -------------------------------------------------- */
     var navbar = document.getElementById("navbar");
     var navToggle = document.getElementById("navToggle");
     var navLinks = document.querySelector(".nav-links");
@@ -92,139 +146,86 @@
     var footerOverlay = document.getElementById("footerOverlay");
     var allNavAnchors = document.querySelectorAll(".nav-links a");
     var fadeElements = document.querySelectorAll(
-        ".project-card, .section-title, .about-content, .hero-content, .contact-text, .contact-links, .skill-tag"
+        ".hero-content, .about-content, .about-kpi, .section-title, .section-intro, .skill-card, .project-card, .contact-panel"
     );
-    var langPopup = document.getElementById("langPopup");
-    var langPtBtn = document.getElementById("langPt");
-    var langEnBtn = document.getElementById("langEn");
     var langToggle = document.getElementById("langToggle");
     var langToggleText = document.getElementById("langToggleText");
 
-    /* --------------------------------------------------
-       applyTranslations
-       Percorre todos os elementos com atributo data-i18n 
-       e substitui seu textContent pela traducao 
-       correspondente ao idioma selecionado.
-       -------------------------------------------------- */
     function applyTranslations(lang) {
+        var currentTranslations = translations[lang];
         var elements = document.querySelectorAll("[data-i18n]");
         for (var i = 0; i < elements.length; i++) {
             var key = elements[i].getAttribute("data-i18n");
-            if (translations[lang] && translations[lang][key]) {
-                elements[i].textContent = translations[lang][key];
+            if (currentTranslations && currentTranslations[key]) {
+                elements[i].textContent = currentTranslations[key];
             }
         }
-        /* Atualiza o texto do botao toggle na navbar */
+
+        var attributeElements = document.querySelectorAll("[data-i18n-aria-label], [data-i18n-alt]");
+        for (var j = 0; j < attributeElements.length; j++) {
+            var ariaLabelKey = attributeElements[j].getAttribute("data-i18n-aria-label");
+            var altKey = attributeElements[j].getAttribute("data-i18n-alt");
+
+            if (ariaLabelKey && currentTranslations && currentTranslations[ariaLabelKey]) {
+                attributeElements[j].setAttribute("aria-label", currentTranslations[ariaLabelKey]);
+            }
+
+            if (altKey && currentTranslations && currentTranslations[altKey]) {
+                attributeElements[j].setAttribute("alt", currentTranslations[altKey]);
+            }
+        }
+
         updateLangToggleText(lang);
     }
 
-    /* --------------------------------------------------
-       updateLangToggleText
-       Atualiza o texto do botao de idioma na navbar.
-       Mostra o idioma alternativo (clicavel para trocar).
-       -------------------------------------------------- */
     function updateLangToggleText(currentLang) {
-        if (langToggleText) {
-            langToggleText.textContent = currentLang === "pt" ? "EN" : "PT";
+        if (!langToggleText) {
+            return;
         }
+        langToggleText.textContent = currentLang === "pt" ? "EN" : "PT";
     }
 
-    /* --------------------------------------------------
-       toggleLanguage
-       Alterna entre portugues e ingles.
-       -------------------------------------------------- */
-    function toggleLanguage() {
-        var currentLang = localStorage.getItem("portfolio-lang") || "pt";
-        var newLang = currentLang === "pt" ? "en" : "pt";
-        setLanguage(newLang);
-    }
-
-    /* --------------------------------------------------
-       setLanguage
-       Define o idioma da pagina, salva no localStorage 
-       e aplica as traducoes. Tambem esconde o popup.
-       -------------------------------------------------- */
-    function setLanguage(lang) {
-        localStorage.setItem("portfolio-lang", lang);
-        applyTranslations(lang);
-        hidePopup();
-    }
-
-    /* --------------------------------------------------
-       hidePopup
-       Esconde o popup de selecao de idioma com animacao.
-       -------------------------------------------------- */
-    function hidePopup() {
-        if (langPopup) {
-            langPopup.classList.add("hidden");
-        }
-    }
-
-    /* --------------------------------------------------
-       showPopup
-       Exibe o popup de selecao de idioma.
-       -------------------------------------------------- */
-    function showPopup() {
-        if (langPopup) {
-            langPopup.classList.remove("hidden");
-        }
-    }
-
-    /* --------------------------------------------------
-       initLanguage
-       Verifica se ja existe um idioma salvo no localStorage.
-       Se sim, aplica as traducoes e esconde o popup.
-       Se nao, exibe o popup para o usuario escolher.
-       -------------------------------------------------- */
-    function initLanguage() {
+    function getInitialLanguage() {
         var savedLang = localStorage.getItem("portfolio-lang");
-        
-        if (savedLang) {
-            applyTranslations(savedLang);
-            hidePopup();
-        } else {
-            showPopup();
+        if (savedLang === "pt" || savedLang === "en") {
+            return savedLang;
         }
 
-        /* Listeners para os botoes do popup */
-        if (langPtBtn) {
-            langPtBtn.addEventListener("click", function () {
-                setLanguage("pt");
-            });
-        }
-        if (langEnBtn) {
-            langEnBtn.addEventListener("click", function () {
-                setLanguage("en");
-            });
-        }
+        var browserLang = (window.navigator.language || "pt").toLowerCase();
+        return browserLang.indexOf("pt") === 0 ? "pt" : "en";
+    }
 
-        /* Listener para o botao toggle na navbar */
+    function setLanguage(lang) {
+        var safeLang = lang === "en" ? "en" : "pt";
+        localStorage.setItem("portfolio-lang", safeLang);
+        applyTranslations(safeLang);
+    }
+
+    function toggleLanguage() {
+        var currentLang = localStorage.getItem("portfolio-lang") || getInitialLanguage();
+        var nextLang = currentLang === "pt" ? "en" : "pt";
+        setLanguage(nextLang);
+    }
+
+    function initLanguage() {
+        setLanguage(getInitialLanguage());
+
         if (langToggle) {
             langToggle.addEventListener("click", toggleLanguage);
         }
     }
 
-    /* --------------------------------------------------
-       initFadeElements
-       Adiciona a classe "fade-in" a todos os elementos 
-       que devem aparecer com animacao ao entrar na tela.
-       Isso os deixa inicialmente invisiveis ate que o 
-       observer detecte sua visibilidade.
-       -------------------------------------------------- */
     function initFadeElements() {
         for (var i = 0; i < fadeElements.length; i++) {
             fadeElements[i].classList.add("fade-in");
         }
     }
 
-    /* --------------------------------------------------
-       handleNavbarScroll
-       Verifica a posicao de rolagem da pagina. Quando o 
-       usuario rola mais de 50px, adiciona a classe 
-       "scrolled" a navbar para reduzir seu tamanho.
-       Quando volta ao topo, remove a classe.
-       -------------------------------------------------- */
     function handleNavbarScroll() {
+        if (!navbar) {
+            return;
+        }
+
         if (window.scrollY > 50) {
             navbar.classList.add("scrolled");
         } else {
@@ -232,11 +233,6 @@
         }
     }
 
-    /* --------------------------------------------------
-       typeHeroName
-       Simula o efeito de digitacao no nome do hero.
-       Usa o atributo data-text como fonte do texto.
-       -------------------------------------------------- */
     function typeHeroName() {
         if (!heroName || !heroNameText) {
             return;
@@ -244,40 +240,28 @@
 
         var fullText = heroName.getAttribute("data-text") || "";
         var index = 0;
-
         heroNameText.textContent = "";
 
         function typeNextChar() {
             if (index <= fullText.length) {
                 heroNameText.textContent = fullText.slice(0, index);
                 index += 1;
-                window.setTimeout(typeNextChar, 450);
+                window.setTimeout(typeNextChar, 110);
             }
         }
 
         typeNextChar();
     }
 
-    /* --------------------------------------------------
-       handleHeroOverlay
-       Calcula a opacidade do overlay da secao hero com 
-       base na posicao de rolagem. Quando o usuario esta 
-       no topo, o overlay esta totalmente visivel. A 
-       medida que rola para baixo, o overlay desaparece 
-       gradualmente ate ficar completamente transparente 
-       ao sair da secao hero.
-       -------------------------------------------------- */
     function handleHeroOverlay() {
         if (!heroOverlay || !heroSection) {
             return;
         }
+
         var heroHeight = heroSection.offsetHeight;
         var scrollPos = window.scrollY;
+        var opacity = 1 - scrollPos / heroHeight;
 
-        /* Calcula a opacidade de 1 (topo) ate 0 (fim do hero) */
-        var opacity = 1 - (scrollPos / heroHeight);
-
-        /* Limita o valor entre 0 e 1 */
         if (opacity < 0) {
             opacity = 0;
         }
@@ -288,29 +272,17 @@
         heroOverlay.style.opacity = opacity;
     }
 
-    /* --------------------------------------------------
-       handleContactOverlay
-       Calcula a opacidade do overlay da secao de contato.
-       Quando o usuario se aproxima da secao final, o 
-       overlay comeca a aparecer gradualmente, ficando 
-       totalmente visivel quando a secao esta centralizada
-       na viewport. Cria um efeito espelhado em relacao 
-       ao overlay do hero.
-       -------------------------------------------------- */
     function handleContactOverlay() {
         if (!contactOverlay || !contactSection) {
             return;
         }
 
         var contactTop = contactSection.offsetTop;
-        var contactHeight = contactSection.offsetHeight;
         var scrollPos = window.scrollY;
         var windowHeight = window.innerHeight;
 
-        /* Ponto onde o overlay comeca a aparecer: quando a secao entra na viewport */
         var fadeStart = contactTop - windowHeight;
-        /* Ponto onde o overlay esta totalmente visivel: metade da secao visivel */
-        var fadeEnd = contactTop - (windowHeight * 0.3);
+        var fadeEnd = contactTop - windowHeight * 0.32;
         var fadeRange = fadeEnd - fadeStart;
 
         var opacity = 0;
@@ -319,7 +291,6 @@
             opacity = (scrollPos - fadeStart) / fadeRange;
         }
 
-        /* Limita o valor entre 0 e 1 */
         if (opacity < 0) {
             opacity = 0;
         }
@@ -328,129 +299,238 @@
         }
 
         contactOverlay.style.opacity = opacity;
-
-        /* Aplica a mesma opacidade ao overlay do footer */
         if (footerOverlay) {
             footerOverlay.style.opacity = opacity;
         }
     }
 
-    /* --------------------------------------------------
-       toggleMobileMenu
-       Alterna a visibilidade do menu em dispositivos 
-       mobile. Ativa/desativa as classes "active" no 
-       botao hamburguer e "open" na lista de links.
-       -------------------------------------------------- */
     function toggleMobileMenu() {
+        if (!navToggle || !navLinks) {
+            return;
+        }
         navToggle.classList.toggle("active");
         navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", navLinks.classList.contains("open") ? "true" : "false");
     }
 
-    /* --------------------------------------------------
-       closeMobileMenu
-       Fecha o menu mobile removendo as classes de estado 
-       aberto. Chamada quando o usuario clica em um link 
-       do menu, garantindo que o menu feche apos a 
-       navegacao.
-       -------------------------------------------------- */
     function closeMobileMenu() {
+        if (!navToggle || !navLinks) {
+            return;
+        }
         navToggle.classList.remove("active");
         navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
     }
 
-    /* --------------------------------------------------
-       setupMobileMenuListeners
-       Associa o evento de clique no botao hamburguer 
-       para abrir/fechar o menu. Tambem adiciona um 
-       listener a cada link da navegacao para fechar o 
-       menu apos o clique.
-       -------------------------------------------------- */
     function setupMobileMenuListeners() {
-        navToggle.addEventListener("click", toggleMobileMenu);
+        if (!navToggle || !navLinks) {
+            return;
+        }
+
+        navToggle.addEventListener("click", function (event) {
+            event.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        navLinks.addEventListener("click", function (event) {
+            event.stopPropagation();
+        });
 
         for (var i = 0; i < allNavAnchors.length; i++) {
             allNavAnchors[i].addEventListener("click", closeMobileMenu);
         }
+
+        document.addEventListener("click", function (event) {
+            if (!navLinks.classList.contains("open")) {
+                return;
+            }
+
+            if (!navbar || !navbar.contains(event.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && navLinks.classList.contains("open")) {
+                closeMobileMenu();
+            }
+        });
     }
 
-    /* --------------------------------------------------
-       setupScrollObserver
-       Cria um IntersectionObserver que monitora quando 
-       os elementos com a classe "fade-in" entram no 
-       viewport. Quando pelo menos 15% do elemento esta 
-       visivel, adiciona a classe "visible" para disparar 
-       a animacao de entrada. Apos a animacao, o observer 
-       para de monitorar aquele elemento.
-       -------------------------------------------------- */
     function setupScrollObserver() {
-        /* Verifica se o navegador suporta IntersectionObserver */
         if (!("IntersectionObserver" in window)) {
-            /* Fallback: torna todos os elementos visiveis imediatamente */
             for (var i = 0; i < fadeElements.length; i++) {
                 fadeElements[i].classList.add("visible");
             }
             return;
         }
 
-        var observerOptions = {
-            root: null,        /* viewport como referencia */
-            threshold: 0.15    /* 15% do elemento visivel */
-        };
-
-        var observer = new IntersectionObserver(function (entries) {
-            for (var i = 0; i < entries.length; i++) {
-                if (entries[i].isIntersecting) {
-                    entries[i].target.classList.add("visible");
-                    observer.unobserve(entries[i].target);
+        var observer = new IntersectionObserver(
+            function (entries) {
+                for (var i = 0; i < entries.length; i++) {
+                    if (entries[i].isIntersecting) {
+                        entries[i].target.classList.add("visible");
+                        observer.unobserve(entries[i].target);
+                    }
                 }
+            },
+            {
+                root: null,
+                threshold: 0.14
             }
-        }, observerOptions);
+        );
 
         for (var j = 0; j < fadeElements.length; j++) {
             observer.observe(fadeElements[j]);
         }
     }
 
-    /* --------------------------------------------------
-       smoothScrollToSection
-       Intercepta cliques em links de ancora (href="#id") 
-       e realiza uma rolagem suave ate a secao alvo.
-       Calcula o offset levando em conta a altura da 
-       navbar fixa para nao cobrir o conteudo.
-       -------------------------------------------------- */
     function smoothScrollToSection() {
         var anchors = document.querySelectorAll('a[href^="#"]');
 
         for (var i = 0; i < anchors.length; i++) {
             anchors[i].addEventListener("click", function (event) {
                 var targetId = this.getAttribute("href");
-
                 if (targetId === "#") {
                     return;
                 }
 
                 var targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    event.preventDefault();
-                    var navbarHeight = navbar.offsetHeight;
-                    var targetPosition = targetElement.offsetTop - navbarHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: "smooth"
-                    });
+                if (!targetElement) {
+                    return;
                 }
+
+                event.preventDefault();
+                var navbarHeight = navbar ? navbar.offsetHeight : 0;
+                var targetPosition = targetElement.offsetTop - navbarHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth"
+                });
             });
         }
     }
 
-    /* --------------------------------------------------
-       init
-       Funcao principal de inicializacao. Chama todas as 
-       funcoes de setup na ordem correta quando o DOM 
-       esta pronto.
-       -------------------------------------------------- */
+    function isRealRepoUrl(repoUrl) {
+        if (!repoUrl) {
+            return false;
+        }
+
+        if (repoUrl.indexOf("seuusuario") !== -1) {
+            return false;
+        }
+
+        return /^https?:\/\//.test(repoUrl);
+    }
+
+    function isRealVideoId(videoId) {
+        if (!videoId) {
+            return false;
+        }
+
+        return videoId.indexOf("SEU_VIDEO_ID") !== 0;
+    }
+
+    function setupProjectDetails() {
+        var modal = document.getElementById("projectDetailModal");
+        var modalOverlay = document.getElementById("projectDetailOverlay");
+        var modalClose = document.getElementById("projectDetailClose");
+        var projectCards = document.querySelectorAll(".project-card");
+
+        var modalTitle = document.getElementById("modalProjectTitle");
+        var modalDescription = document.getElementById("modalProjectDescription");
+        var modalImage = document.getElementById("modalProjectImage");
+        var repoBtn = document.getElementById("modalProjectRepo");
+        var demoBtn = document.getElementById("modalProjectDemo");
+
+        if (!modal) {
+            return;
+        }
+
+        function closeModal() {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        function openModal(card) {
+            var repoUrl = card.getAttribute("data-repo-url");
+            var imageUrl = card.getAttribute("data-image");
+            var videoId = card.getAttribute("data-video-id");
+            var title = card.querySelector(".card-title").textContent;
+            var description = card.querySelector(".card-description").textContent;
+
+            if (modalTitle) {
+                modalTitle.textContent = title;
+            }
+            if (modalDescription) {
+                modalDescription.textContent = description;
+            }
+            if (modalImage) {
+                modalImage.src = imageUrl || "assets/montanha.jpeg";
+                modalImage.alt = title;
+            }
+
+            if (repoBtn) {
+                if (isRealRepoUrl(repoUrl)) {
+                    repoBtn.href = repoUrl;
+                    repoBtn.removeAttribute("aria-disabled");
+                    repoBtn.title = "";
+                } else {
+                    repoBtn.href = "#";
+                    repoBtn.setAttribute("aria-disabled", "true");
+                    repoBtn.title = "Repositório não disponível";
+                }
+
+                repoBtn.onclick = function (event) {
+                    if (repoBtn.getAttribute("aria-disabled") === "true") {
+                        event.preventDefault();
+                    }
+                };
+            }
+
+            if (demoBtn) {
+                if (isRealVideoId(videoId)) {
+                    demoBtn.disabled = false;
+                    demoBtn.removeAttribute("aria-disabled");
+                    demoBtn.title = "";
+                    demoBtn.onclick = function () {
+                        window.open("https://www.youtube.com/watch?v=" + videoId, "_blank", "noopener,noreferrer");
+                    };
+                } else {
+                    demoBtn.disabled = true;
+                    demoBtn.setAttribute("aria-disabled", "true");
+                    demoBtn.title = "Demo não disponível";
+                    demoBtn.onclick = null;
+                }
+            }
+
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        for (var i = 0; i < projectCards.length; i++) {
+            projectCards[i].addEventListener("click", function (event) {
+                if (event.target.tagName !== "A" && event.target.closest("a") === null) {
+                    openModal(this);
+                }
+            });
+        }
+
+        if (modalOverlay) {
+            modalOverlay.addEventListener("click", closeModal);
+        }
+        if (modalClose) {
+            modalClose.addEventListener("click", closeModal);
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && modal.classList.contains("active")) {
+                closeModal();
+            }
+        });
+    }
+
     function init() {
         initLanguage();
         initFadeElements();
@@ -461,18 +541,16 @@
         setupMobileMenuListeners();
         setupScrollObserver();
         smoothScrollToSection();
+        setupProjectDetails();
 
-        /* Listener de scroll para o comportamento da navbar e overlay */
         window.addEventListener("scroll", handleNavbarScroll);
         window.addEventListener("scroll", handleHeroOverlay);
         window.addEventListener("scroll", handleContactOverlay);
     }
 
-    /* Aguarda o DOM estar completamente carregado */
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", init);
     } else {
         init();
     }
-
 })();

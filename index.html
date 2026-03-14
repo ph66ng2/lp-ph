@@ -4,259 +4,292 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/iconeSite.svg" type="image/x-icon">
-    <title>ph</title>
+    <title>ph.dev</title>
 
-    <!-- Fonte quadrada - IBM Plex Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome para icones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 
-    <!-- Popup de selecao de idioma -->
-    <div class="lang-popup" id="langPopup">
-        <div class="lang-popup-content">
-            <h2 class="lang-popup-title">?</h2>
-            <div class="lang-popup-buttons">
-                <button class="lang-btn" id="langPt">Portugues</button>
-                <button class="lang-btn" id="langEn">English</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navegacao fixa no topo -->
     <nav class="navbar" id="navbar">
-        <div class="nav-brand">portifolio.ph</div>
-        <ul class="nav-links">
-            <li><a href="#hero" data-i18n="navHome">Inicio</a></li>
-            <li><a href="#about" data-i18n="navAbout">Stacks</a></li>
+        <div class="nav-brand">paulo.medeiros</div>
+        <ul class="nav-links" id="mainNavLinks">
+            <li><a href="#hero" data-i18n="navHome">Início</a></li>
+            <li><a href="#about" data-i18n="navAbout">Sobre</a></li>
+            <li><a href="#skills" data-i18n="navSkills">Habilidades</a></li>
             <li><a href="#projects" data-i18n="navProjects">Projetos</a></li>
             <li><a href="#contact" data-i18n="navContact">Contato</a></li>
         </ul>
-        <button class="lang-toggle" id="langToggle" aria-label="Mudar idioma">
+        <button class="lang-toggle" id="langToggle" aria-label="Mudar idioma" data-i18n-aria-label="langToggleLabel">
             <span id="langToggleText">EN</span>
         </button>
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <button class="nav-toggle" id="navToggle" aria-label="Menu" data-i18n-aria-label="navToggleLabel" aria-expanded="false" aria-controls="mainNavLinks">
             <span></span>
             <span></span>
             <span></span>
         </button>
     </nav>
 
-    <!-- Secao Hero / Apresentacao -->
     <section class="hero" id="hero">
-        <!-- Overlay escuro que cobre apenas o hero e desaparece ao rolar -->
         <div class="hero-overlay" id="heroOverlay"></div>
-        <div class="hero-content">
-            <p class="hero-greeting" data-i18n="heroGreeting">Ola, eu sou</p>
-            <h1 class="hero-name" data-text="Paulo Medeiros">
-                <span class="hero-name-text" id="heroNameText"></span>
-                <span class="hero-cursor" aria-hidden="true"></span>
-            </h1>
-            <p class="hero-role" data-i18n="heroRole">Desenvolvedor Full Stack</p>
-            <div class="hero-actions">
-                <a href="#contact" class="hero-cta" data-i18n="heroResume">Resume</a>
-                <a href="#projects" class="hero-cta" data-i18n="heroProjects">Ver Projetos</a>
-                <a href="#contact" class="hero-cta" data-i18n="heroContact">Contato</a>
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-greeting" data-i18n="heroGreeting">Olá, eu sou</p>
+                <h1 class="hero-name" data-text="Paulo Medeiros">
+                    <span class="hero-name-text" id="heroNameText"></span>
+                    <span class="hero-cursor" aria-hidden="true"></span>
+                </h1>
+                <p class="hero-role" data-i18n="heroRole">Full Stack com foco em Mobile e automação</p>
+                <p class="hero-pitch" data-i18n="heroPitch">
+                    Desenvolvimento de aplicativos, sistemas internos e fluxos de automação que reduzem tarefas manuais e aceleram a operação.
+                </p>
+                <div class="hero-chips">
+                    <span class="hero-chip">Mobile</span>
+                    <span class="hero-chip">Rust</span>
+                    <span class="hero-chip">Java</span>
+                </div>
+                <div class="hero-actions">
+                    <a href="#contact" class="hero-cta hero-cta-primary" data-i18n="heroPrimaryCta">Fale comigo</a>
+                    <a href="#projects" class="hero-cta hero-cta-secondary" data-i18n="heroProjects">Ver Projetos</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Secao Stacks -->
     <section class="section about" id="about">
         <div class="container">
-            <h2 class="section-title" data-i18n="sectionStacks">Stacks</h2>
+            <h2 class="section-title" data-i18n="aboutTitle">Como eu gero valor</h2>
             <div class="about-content">
                 <p data-i18n="aboutText">
-                    Stacks e tecnologias que domino e utilizo frequentemente em meus projetos, abrangendo desde linguagens de programacao e frameworks ate ferramentas de desenvolvimento e bancos de dados.
+                    Traduzo processos operacionais em produtos digitais práticos, com foco em estabilidade, produtividade da equipe e tempo de resposta menor para o negócio.
                 </p>
-                <div class="skills">
-                        <div class="skill-category">
-                            <h3 class="skill-category-title" data-i18n="catLanguages">Linguagens</h3>
-                            <span class="skill-tag"><i class="fab fa-html5"></i> HTML</span>
-                            <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS</span>
-                            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
-                            <span class="skill-tag"><i class="fab fa-rust"></i> Rust</span>
-                        </div>
-                        <div class="skill-category">
-                            <h3 class="skill-category-title" data-i18n="catFrameworks">Frameworks</h3>
-                            <span class="skill-tag"><i class="fab fa-react"></i> React</span>
-                            <span class="skill-tag"><i class="fas fa-gear"></i> Tauri</span>
-                            <span class="skill-tag"><i class="fas fa-wind"></i> Tailwind CSS</span>
-                        </div>
-                        <div class="skill-category">
-                            <h3 class="skill-category-title" data-i18n="catFeatures">Funcionalidades</h3>
-                            <span class="skill-tag"><i class="fab fa-git"></i> Git</span>
-                            <span class="skill-tag"><i class="fas fa-network-wired"></i> REST APIs</span>
-                        </div>
-                        <div class="skill-category">
-                            <h3 class="skill-category-title" data-i18n="catDatabases">Databases</h3>
-                            <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
-                            <span class="skill-tag"><i class="fas fa-database"></i> PostgreSQL</span>
-                        </div>
+                <div class="about-kpis">
+                    <article class="about-kpi">
+                        <h3 data-i18n="aboutPillar1Title">Apps mobile orientados a campo</h3>
+                        <p data-i18n="aboutPillar1Desc">Fluxos offline, integração com hardware e UX direta para uso diário.</p>
+                    </article>
+                    <article class="about-kpi">
+                        <h3 data-i18n="aboutPillar2Title">Sistemas internos para operação</h3>
+                        <p data-i18n="aboutPillar2Desc">Painel, controle de status e automação de etapas repetitivas.</p>
+                    </article>
+                    <article class="about-kpi">
+                        <h3 data-i18n="aboutPillar3Title">Entrega ponta a ponta</h3>
+                        <p data-i18n="aboutPillar3Desc">Do desenho técnico até deploy, com monitoramento e evolução contínua.</p>
+                    </article>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Secao Projetos -->
-    <section class="section projects" id="projects">
+    <section class="section skills" id="skills">
         <div class="container">
-            <h2 class="section-title" data-i18n="sectionProjects">Projetos</h2>
-            <div class="projects-grid" id="projectsGrid">
+            <h2 class="section-title" data-i18n="skillsTitle">Stack técnica</h2>
+            <p class="section-intro" data-i18n="skillsIntro">
+                Combinação de stack web, mobile e backend para construir produtos de uso real, com performance e manutenção simples.
+            </p>
 
-                <!-- Card de Projeto 1 -->
-                <div class="project-card" data-category="web">
-                    <div class="card-header">
-                        <span class="card-icon">{ }</span>
-                        <div class="card-links">
-                            <a href="#" class="card-link" title="Repositorio">repo</a>
-                            <a href="#" class="card-link" title="Demo">demo</a>
+            <div class="skills-grid" id="skillsGrid">
+                <div class="skill-card" data-category="frontend">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon frontend-icon">
+                            <i class="fas fa-code"></i>
                         </div>
+                        <h3 class="skill-card-title" data-i18n="skillFrontend">Frontend</h3>
                     </div>
-                    <h3 class="card-title" data-i18n="proj1Title">Projeto Alpha</h3>
-                    <p class="card-description" data-i18n="proj1Desc">
-                        Aplicacao web completa com autenticacao, dashboard
-                        interativo e integracao com APIs externas.
-                    </p>
-                    <div class="card-tags">
-                        <span>React</span>
-                        <span>Node.js</span>
-                        <span>MongoDB</span>
+                    <div class="skill-card-content">
+                        <div class="skill-tags">
+                            <span class="skill-tag-badge">React</span>
+                            <span class="skill-tag-badge">TypeScript</span>
+                            <span class="skill-tag-badge">Next.js</span>
+                            <span class="skill-tag-badge">TailwindCSS</span>
+                            <span class="skill-tag-badge">Vite</span>
+                            <span class="skill-tag-badge">JavaScript</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Card de Projeto 2 -->
-                <div class="project-card" data-category="api">
-                    <div class="card-header">
-                        <span class="card-icon">{ }</span>
-                        <div class="card-links">
-                            <a href="#" class="card-link" title="Repositorio">repo</a>
-                            <a href="#" class="card-link" title="Demo">demo</a>
+                <div class="skill-card" data-category="backend">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon backend-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="skill-card-title" data-i18n="skillBackend">Backend</h3>
+                    </div>
+                    <div class="skill-card-content">
+                        <div class="skill-tags">
+                            <span class="skill-tag-badge">Node.js</span>
+                            <span class="skill-tag-badge">PHP/Laravel</span>
+                            <span class="skill-tag-badge">Python</span>
+                            <span class="skill-tag-badge">REST APIs</span>
+                            <span class="skill-tag-badge">PostgreSQL</span>
+                            <span class="skill-tag-badge">MySQL</span>
                         </div>
                     </div>
-                    <h3 class="card-title">AutoOs</h3>
-                    <p class="card-description" data-i18n="proj2Desc">
-                        Sistema desktop nativo desenvolvido em Tauri + React para gestão completa de assistência técnica de impressoras, incluindo controle de equipamentos, estoque de insumos, workflow de manutenção e automação de comunicação com clientes. 
+                </div>
+
+                <div class="skill-card" data-category="mobile">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon mobile-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="skill-card-title" data-i18n="skillMobile">Mobile</h3>
+                    </div>
+                    <div class="skill-card-content">
+                        <div class="skill-tags">
+                            <span class="skill-tag-badge">Flutter</span>
+                            <span class="skill-tag-badge">Dart</span>
+                            <span class="skill-tag-badge">React Native</span>
+                            <span class="skill-tag-badge">PWA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="tools">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon tools-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="skill-card-title" data-i18n="skillTools">Ferramentas</h3>
+                    </div>
+                    <div class="skill-card-content">
+                        <div class="skill-tags">
+                            <span class="skill-tag-badge">Git/GitHub</span>
+                            <span class="skill-tag-badge">Docker</span>
+                            <span class="skill-tag-badge">Linux</span>
+                            <span class="skill-tag-badge">Tauri</span>
+                            <span class="skill-tag-badge">CI/CD</span>
+                            <span class="skill-tag-badge">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sectionProjects">Projetos em destaque</h2>
+            <p class="section-intro" data-i18n="projectsIntro">
+                Seleções com foco em impacto operacional: menos retrabalho, processos previsíveis e ganho de velocidade para o time.
+            </p>
+            <div class="projects-grid" id="projectsGrid">
+
+                <article class="project-card project-card-featured" data-category="mobile" data-repo-url="https://github.com/ph66ng2" data-image="assets/montanha.jpeg" data-video-id="">
+                    <div class="card-header">
+                        <span class="card-badge" data-i18n="proj1Badge">Destaque mobile</span>
+                    </div>
+                    <h3 class="card-title" data-i18n="proj1Title">ZPL Template Printer</h3>
+                    <p class="card-description" data-i18n="proj1Desc">
+                        Aplicativo Flutter para criação de etiquetas ZPL em campo, com conexão Bluetooth em impressoras térmicas e configuração rápida de modelos por contexto de uso.
                     </p>
+                    <ul class="card-highlights">
+                        <li data-i18n="proj1Highlight1">Fluxo focado em operação logística</li>
+                        <li data-i18n="proj1Highlight2">Edição dinâmica de layout sem retrabalho</li>
+                        <li data-i18n="proj1Highlight3">Execução local com baixa dependência externa</li>
+                    </ul>
+                    <div class="card-tags">
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>Bluetooth</span>
+                        <span>SQLite</span>
+                    </div>
+                </article>
+
+                <article class="project-card" data-category="desktop" data-repo-url="https://github.com/ph66ng2" data-image="assets/montanha.jpeg" data-video-id="">
+                    <div class="card-header">
+                        <span class="card-badge" data-i18n="proj2Badge">Desktop operacional</span>
+                    </div>
+                    <h3 class="card-title" data-i18n="proj2Title">AutoOs</h3>
+                    <p class="card-description" data-i18n="proj2Desc">
+                        Sistema desktop em Tauri + React para assistência técnica, consolidando abertura de ordens, controle de itens, status de manutenção e comunicação com clientes.
+                    </p>
+                    <ul class="card-highlights">
+                        <li data-i18n="proj2Highlight1">Visão única de todo o ciclo da OS</li>
+                        <li data-i18n="proj2Highlight2">Fluxo padronizado para equipe técnica</li>
+                    </ul>
                     <div class="card-tags">
                         <span>React</span>
                         <span>Tauri</span>
                         <span>PostgreSQL</span>
                     </div>
-                </div>
+                </article>
 
-                <!-- Card de Projeto 3 -->
-                <div class="project-card" data-category="web">
+                <article class="project-card" data-category="desktop" data-repo-url="https://github.com/ph66ng2" data-image="assets/montanha.jpeg" data-video-id="">
                     <div class="card-header">
-                        <span class="card-icon">{ }</span>
-                        <div class="card-links">
-                            <a href="#" class="card-link" title="Repositorio">repo</a>
-                            <a href="#" class="card-link" title="Demo">demo</a>
-                        </div>
+                        <span class="card-badge" data-i18n="proj3Badge">Automação financeira</span>
                     </div>
-                    <h3 class="card-title">AutoBo</h3>
+                    <h3 class="card-title" data-i18n="proj3Title">AutoBo</h3>
                     <p class="card-description" data-i18n="proj3Desc">
-                        Solução desktop desenvolvida em Tauri e React/TypeScript para automatização completa do ciclo de cobranças via boletos bancários, eliminando processos manuais e integrando-se diretamente com a infraestrutura bancária do Sicredi.
+                        Solução desktop em Tauri + React/TypeScript para automatização de cobranças via boletos, reduzindo etapas manuais e melhorando previsibilidade financeira.
                     </p>
+                    <ul class="card-highlights">
+                        <li data-i18n="proj3Highlight1">Automação ponta a ponta do ciclo de cobrança</li>
+                        <li data-i18n="proj3Highlight2">Integração com serviços externos e validações</li>
+                    </ul>
                     <div class="card-tags">
-                        <span>PostgreSQL</span>
-                        <span>ViaCEP</span>
                         <span>TypeScript</span>
+                        <span>Tauri</span>
+                        <span>PostgreSQL</span>
                     </div>
-                </div>
-
-                <!-- Card de Projeto 4 -->
-                <div class="project-card" data-category="tool">
-                    <div class="card-header">
-                        <span class="card-icon">{ }</span>
-                        <div class="card-links">
-                            <a href="#" class="card-link" title="Repositorio">repo</a>
-                        </div>
-                    </div>
-                    <h3 class="card-title" data-i18n="proj4Title">Projeto Delta</h3>
-                    <p class="card-description" data-i18n="proj4Desc">
-                        CLI para automacao de tarefas repetitivas no
-                        ambiente de desenvolvimento, com plugins extensiveis.
-                    </p>
-                    <div class="card-tags">
-                        <span>Rust</span>
-                        <span>CLI</span>
-                        <span>TOML</span>
-                    </div>
-                </div>
-
-                <!-- Card de Projeto 5 -->
-                <div class="project-card" data-category="web">
-                    <div class="card-header">
-                        <span class="card-icon">{ }</span>
-                        <div class="card-links">
-                            <a href="#" class="card-link" title="Repositorio">repo</a>
-                            <a href="#" class="card-link" title="Demo">demo</a>
-                        </div>
-                    </div>
-                    <h3 class="card-title" data-i18n="proj5Title">Projeto Epsilon</h3>
-                    <p class="card-description" data-i18n="proj5Desc">
-                        Dashboard de monitoramento em tempo real com
-                        graficos interativos e sistema de alertas.
-                    </p>
-                    <div class="card-tags">
-                        <span>Vue.js</span>
-                        <span>D3.js</span>
-                        <span>WebSocket</span>
-                    </div>
-                </div>
-
-                <!-- Card de Projeto 6 -->
-                <div class="project-card" data-category="api">
-                    <div class="card-header">
-                        <span class="card-icon">{ }</span>
-                        <div class="card-links">
-                            <a href="#" class="card-link" title="Repositorio">repo</a>
-                        </div>
-                    </div>
-                    <h3 class="card-title" data-i18n="proj6Title">Projeto Zeta</h3>
-                    <p class="card-description" data-i18n="proj6Desc">
-                        Microservico de processamento de imagens com
-                        fila de tarefas e armazenamento em nuvem.
-                    </p>
-                    <div class="card-tags">
-                        <span>Go</span>
-                        <span>Redis</span>
-                        <span>AWS S3</span>
-                    </div>
-                </div>
+                </article>
 
             </div>
         </div>
     </section>
 
-    <!-- Secao Contato -->
+    <div class="project-detail-modal" id="projectDetailModal">
+        <div class="modal-overlay" id="projectDetailOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="projectDetailClose" aria-label="Fechar" data-i18n-aria-label="modalCloseLabel">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-section">
+                    <img id="modalProjectImage" src="" alt="Imagem do Projeto" data-i18n-alt="modalImageAlt" class="modal-image">
+                </div>
+                <div class="modal-info-section">
+                    <h2 id="modalProjectTitle" class="modal-title"></h2>
+                    <p id="modalProjectDescription" class="modal-description"></p>
+                    <div class="modal-actions">
+                        <a id="modalProjectRepo" href="#" target="_blank" rel="noreferrer" class="modal-btn modal-btn-repo">
+                            <i class="fab fa-github"></i>
+                            <span data-i18n="modalRepo">Repositório</span>
+                        </a>
+                        <button id="modalProjectDemo" class="modal-btn modal-btn-demo">
+                            <i class="fab fa-youtube"></i>
+                            <span data-i18n="modalDemo">Demo</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="section contact" id="contact">
-        <!-- Overlay que reaparece ao chegar na secao final -->
         <div class="contact-overlay" id="contactOverlay"></div>
         <div class="container">
-            <h2 class="section-title" data-i18n="sectionContact">Contato</h2>
-            <p class="contact-text" data-i18n="contactText">
-                Interessado em trabalhar junto? Entre em contato.
-            </p>
-            <div class="contact-links">
-                <a href="mailto:seuemail@email.com" class="contact-btn">Email</a>
-                <a href="https://github.com/seuusuario" target="_blank" class="contact-btn">GitHub</a>
-                <a href="https://linkedin.com/in/seuusuario" target="_blank" class="contact-btn">LinkedIn</a>
+            <div class="contact-panel">
+                <h2 class="section-title" data-i18n="sectionContact">Vamos construir algo útil?</h2>
+                <p class="contact-text" data-i18n="contactText">
+                    Se você procura alguém para transformar processo manual em produto digital, podemos conversar.
+                </p>
+                <p class="contact-availability" data-i18n="contactAvailability">
+                    Disponível para freelas estratégicos e oportunidades full stack/mobile.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:seuemail@email.com" class="contact-btn contact-btn-primary" data-i18n="contactEmail">Enviar email</a>
+                    <a href="https://github.com/ph66ng2" target="_blank" rel="noreferrer" class="contact-btn" data-i18n="contactGitHub">GitHub</a>
+                    <a href="https://linkedin.com/in/seuusuario" target="_blank" rel="noreferrer" class="contact-btn" data-i18n="contactLinkedIn">LinkedIn</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Rodape -->
     <footer class="footer">
         <div class="footer-overlay" id="footerOverlay"></div>
-        <p data-i18n="footerText">ph</p>
+        <p data-i18n="footerText">Paulo Medeiros | Full Stack & Mobile</p>
     </footer>
 
     <script src="script/script.js"></script>
