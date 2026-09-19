@@ -12,13 +12,13 @@
             navToggleLabel: "Menu",
 
             heroGreeting: "Olá, eu sou",
-            heroRole: "Full Stack com foco em Mobile e automação",
-            heroPitch: "Desenvolvimento de aplicativos, sistemas internos e fluxos de automação que reduzem tarefas manuais e aceleram a operação.",
+            heroRole: "Junior em React Native, TypeScript e React",
+            heroPitch: "Sistemas internos em React e TypeScript e fluxos mobile de campo (ZPL, Bluetooth, persistência). Busco vaga junior em React Native.",
             heroPrimaryCta: "Fale comigo",
             heroProjects: "Ver Projetos",
 
             aboutTitle: "Como eu gero valor",
-            aboutText: "Traduzo processos operacionais em produtos digitais práticos, com foco em estabilidade, produtividade da equipe e tempo de resposta menor para o negócio.",
+            aboutText: "Formação no SENAI e na UCSAL. Traduzo processos operacionais em produtos digitais práticos — React, TypeScript e agora React Native — com foco em estabilidade, produtividade da equipe e tempo de resposta menor para o negócio.",
             aboutPillar1Title: "Apps mobile orientados a campo",
             aboutPillar1Desc: "Fluxos offline, integração com hardware e UX direta para uso diário.",
             aboutPillar2Title: "Sistemas internos para operação",
@@ -27,7 +27,7 @@
             aboutPillar3Desc: "Do desenho técnico até deploy, com monitoramento e evolução contínua.",
 
             skillsTitle: "Stack técnica",
-            skillsIntro: "Combinação de stack web, mobile e backend para construir produtos de uso real, com performance e manutenção simples.",
+            skillsIntro: "Ênfase em React Native, TypeScript, React e JavaScript, com web, mobile e backend para produtos de uso real.",
             skillFrontend: "Frontend",
             skillBackend: "Backend",
             skillMobile: "Mobile",
@@ -36,11 +36,11 @@
             sectionProjects: "Projetos em destaque",
             projectsIntro: "Seleções com foco em impacto operacional: menos retrabalho, processos previsíveis e ganho de velocidade para o time.",
             proj1Badge: "Destaque mobile",
-            proj1Title: "ZPL Template Printer",
-            proj1Desc: "Aplicativo Flutter para criação de etiquetas ZPL em campo, com conexão Bluetooth em impressoras térmicas e configuração rápida de modelos por contexto de uso.",
-            proj1Highlight1: "Fluxo focado em operação logística",
-            proj1Highlight2: "Edição dinâmica de layout sem retrabalho",
-            proj1Highlight3: "Execução local com baixa dependência externa",
+            proj1Title: "Pocket Lite",
+            proj1Desc: "App de impressão móvel em campo: etiquetas ZPL, envio por TCP/IP e Bluetooth, persistência local, testes e CI. Em reconstrução em React Native — o foco é o domínio mobile, não o framework da versão inicial.",
+            proj1Highlight1: "ZPL, TCP/IP e Bluetooth para impressoras térmicas",
+            proj1Highlight2: "Persistência local, testes e CI",
+            proj1Highlight3: "Sendo refeito em React Native",
 
             proj2Badge: "Desktop operacional",
             proj2Title: "AutoOs",
@@ -60,12 +60,12 @@
 
             sectionContact: "Vamos construir algo útil?",
             contactText: "Se você procura alguém para transformar processo manual em produto digital, podemos conversar.",
-            contactAvailability: "Disponível para freelas estratégicos e oportunidades full stack/mobile.",
+            contactAvailability: "Buscando vaga junior em React Native. Aberto a projetos com TypeScript e React.",
             contactEmail: "Enviar email",
             contactGitHub: "GitHub",
             contactLinkedIn: "LinkedIn",
 
-            footerText: "Paulo Medeiros | Full Stack & Mobile"
+            footerText: "Paulo Medeiros | React Native & TypeScript"
         },
         en: {
             navHome: "Home",
@@ -77,13 +77,13 @@
             navToggleLabel: "Menu",
 
             heroGreeting: "Hello, I am",
-            heroRole: "Full Stack focused on Mobile and automation",
-            heroPitch: "I build apps, internal systems and automation flows that reduce manual tasks and speed up operations.",
+            heroRole: "Junior developer — React Native, TypeScript and React",
+            heroPitch: "Internal systems in React and TypeScript, plus field mobile flows (ZPL, Bluetooth, persistence). Looking for a junior React Native role.",
             heroPrimaryCta: "Discuss a project",
             heroProjects: "View case studies",
 
             aboutTitle: "How I create value",
-            aboutText: "I transform operational processes into practical digital products, focused on stability, team productivity and faster response time for the business.",
+            aboutText: "Background at SENAI and UCSAL. I turn operational processes into practical digital products — React, TypeScript, and now React Native — focused on stability, team productivity and faster response time for the business.",
             aboutPillar1Title: "Field-oriented mobile apps",
             aboutPillar1Desc: "Offline-first flows, hardware integration and direct UX for daily use.",
             aboutPillar2Title: "Internal systems for operations",
@@ -92,7 +92,7 @@
             aboutPillar3Desc: "From technical design to deployment, with monitoring and continuous improvement.",
 
             skillsTitle: "Technical stack",
-            skillsIntro: "A blend of web, mobile and backend technologies to build real-world products with performance and maintainability.",
+            skillsIntro: "Emphasis on React Native, TypeScript, React and JavaScript, with web, mobile and backend for real-world products.",
             skillFrontend: "Frontend",
             skillBackend: "Backend",
             skillMobile: "Mobile",
@@ -101,11 +101,11 @@
             sectionProjects: "Featured projects",
             projectsIntro: "Selections focused on operational impact: less rework, more predictable processes and faster team execution.",
             proj1Badge: "Mobile highlight",
-            proj1Title: "ZPL Template Printer",
-            proj1Desc: "Flutter app for creating ZPL labels in the field, with Bluetooth thermal printer connection and fast template setup by use context.",
-            proj1Highlight1: "Flow designed for logistics operations",
-            proj1Highlight2: "Dynamic layout editing without rework",
-            proj1Highlight3: "Local execution with low external dependency",
+            proj1Title: "Pocket Lite",
+            proj1Desc: "Field mobile printing: ZPL labels, TCP/IP and Bluetooth delivery, local persistence, tests and CI. Being rebuilt in React Native — the focus is the mobile domain, not the original framework.",
+            proj1Highlight1: "ZPL, TCP/IP and Bluetooth for thermal printers",
+            proj1Highlight2: "Local persistence, tests and CI",
+            proj1Highlight3: "Being rebuilt in React Native",
 
             proj2Badge: "Operational desktop",
             proj2Title: "AutoOs",
@@ -125,12 +125,12 @@
 
             sectionContact: "Let us build something useful",
             contactText: "If you need someone to turn manual processes into digital products, we should talk.",
-            contactAvailability: "Open to strategic freelance work and full stack/mobile opportunities.",
+            contactAvailability: "Looking for a junior React Native role. Open to TypeScript and React projects.",
             contactEmail: "Send email",
             contactGitHub: "GitHub",
             contactLinkedIn: "LinkedIn",
 
-            footerText: "Paulo Medeiros | Full Stack & Mobile"
+            footerText: "Paulo Medeiros | React Native & TypeScript"
         }
     };
 
