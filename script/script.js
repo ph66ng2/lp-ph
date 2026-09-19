@@ -27,11 +27,12 @@
             aboutPillar3Desc: "Do desenho técnico até deploy, com monitoramento e evolução contínua.",
 
             skillsTitle: "Stack técnica",
-            skillsIntro: "Ênfase em React Native, TypeScript, React e JavaScript, com web, mobile e backend para produtos de uso real.",
-            skillFrontend: "Frontend",
-            skillBackend: "Backend",
+            skillsIntro: "Cinco grupos, sem stack extra: frontend desktop, mobile, backend, nativo e dados.",
+            skillFrontendDesktop: "Frontend desktop",
             skillMobile: "Mobile",
-            skillTools: "Ferramentas",
+            skillBackend: "Backend",
+            skillNative: "Nativo",
+            skillData: "Dados",
 
             sectionProjects: "Projetos em destaque",
             projectsIntro: "Seleções com foco em impacto operacional: menos retrabalho, processos previsíveis e ganho de velocidade para o time.",
@@ -92,11 +93,12 @@
             aboutPillar3Desc: "From technical design to deployment, with monitoring and continuous improvement.",
 
             skillsTitle: "Technical stack",
-            skillsIntro: "Emphasis on React Native, TypeScript, React and JavaScript, with web, mobile and backend for real-world products.",
-            skillFrontend: "Frontend",
-            skillBackend: "Backend",
+            skillsIntro: "Five groups, no extra stack: desktop frontend, mobile, backend, native and data.",
+            skillFrontendDesktop: "Desktop frontend",
             skillMobile: "Mobile",
-            skillTools: "Tools",
+            skillBackend: "Backend",
+            skillNative: "Native",
+            skillData: "Data",
 
             sectionProjects: "Featured projects",
             projectsIntro: "Selections focused on operational impact: less rework, more predictable processes and faster team execution.",
