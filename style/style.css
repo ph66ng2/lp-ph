@@ -444,17 +444,26 @@ a {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 18px;
 }
 
 .skill-card {
+    grid-column: span 2;
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     padding: 20px;
     background-color: var(--panel);
     backdrop-filter: blur(8px);
     transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.skill-card:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.skill-card:nth-child(5) {
+    grid-column: 4 / span 2;
 }
 
 .skill-card:hover {
@@ -496,10 +505,16 @@ a {
     color: var(--accent-warm);
 }
 
-.tools-icon {
+.native-icon {
     background-color: rgba(208, 135, 112, 0.16);
     border-color: rgba(208, 135, 112, 0.32);
     color: #D08770;
+}
+
+.data-icon {
+    background-color: rgba(129, 161, 193, 0.2);
+    border-color: rgba(129, 161, 193, 0.36);
+    color: var(--accent-strong);
 }
 
 .skill-card-title {
@@ -932,6 +947,10 @@ a {
     .skills-grid,
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .skill-card {
+        grid-column: auto;
     }
 
     .project-card-featured {
