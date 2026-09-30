@@ -1,0 +1,69 @@
+{
+  "branch-and-join": {
+    "title": "Bifurcação e reencontro",
+    "description": "A libera B e C em paralelo; D espera pelos dois. E é uma trilha independente.",
+    "tickets": [
+      {"id":"A","title":"Base compartilhada","status":"merged","blockedBy":[]},
+      {"id":"B","title":"Novo caminho B","status":"ready","blockedBy":["A"]},
+      {"id":"C","title":"Novo caminho C","status":"ready","blockedBy":["A"]},
+      {"id":"D","title":"Reencontro B + C","status":"ready","blockedBy":["B","C"]},
+      {"id":"E","title":"Trilha independente","status":"ready","blockedBy":[]}
+    ]
+  },
+  "new-independent": {
+    "title": "Ticket novo sem dependências",
+    "description": "O nó aparece como uma nova raiz. A ordem do array e o ID não criam ligações.",
+    "tickets": [
+      {"id":"BASE","title":"Trabalho já existente","status":"merged","blockedBy":[]},
+      {"id":"NEW-001","title":"Ticket novo independente","status":"ready","blockedBy":[]}
+    ]
+  },
+  "new-after-a": {
+    "title": "Ticket novo depois de A",
+    "description": "A única seta criada é A → NEW-002 porque o próprio ticket declara blockedBy: [A].",
+    "tickets": [
+      {"id":"A","title":"Predecessor A","status":"merged","blockedBy":[]},
+      {"id":"NEW-002","title":"Ticket novo depois de A","status":"ready","blockedBy":["A"]}
+    ]
+  },
+  "new-branch-join": {
+    "title": "Ticket novo cria bifurcação e reencontro",
+    "description": "A libera B novo e C existente em paralelo; D só libera depois que B e C estiverem merged.",
+    "tickets": [
+      {"id":"A","title":"Base","status":"merged","blockedBy":[]},
+      {"id":"NEW-B","title":"Novo ramo B","status":"ready","blockedBy":["A"]},
+      {"id":"C","title":"Ramo C","status":"merged","blockedBy":["A"]},
+      {"id":"D","title":"Reencontro","status":"ready","blockedBy":["NEW-B","C"]}
+    ]
+  },
+  "new-in-the-middle-unmodified": {
+    "title": "Ticket novo no meio: sucessor não foi alterado",
+    "description": "A → C continua como declarado. Criar B com blockedBy: [A] não troca C para depender de B.",
+    "tickets": [
+      {"id":"A","title":"A","status":"merged","blockedBy":[]},
+      {"id":"B","title":"Novo B","status":"ready","blockedBy":["A"]},
+      {"id":"C","title":"Sucessor C ainda depende de A","status":"ready","blockedBy":["A"]}
+    ]
+  },
+  "new-in-the-middle-updated": {
+    "title": "Ticket novo no meio: sucessor atualizado explicitamente",
+    "description": "Só após alterar C.blockedBy para [B], o grafo passa a mostrar A → B → C.",
+    "tickets": [
+      {"id":"A","title":"A","status":"merged","blockedBy":[]},
+      {"id":"B","title":"Novo B","status":"ready","blockedBy":["A"]},
+      {"id":"C","title":"Sucessor C agora depende de B","status":"ready","blockedBy":["B"]}
+    ]
+  },
+  "data-errors": {
+    "title": "Integridade: ausente, ciclo, duplicata e status desconhecido",
+    "description": "Cada problema permanece visível; nós afetados não entram na lista de liberação.",
+    "tickets": [
+      {"id":"MISSING-REF","title":"Referência inexistente","status":"ready","blockedBy":["DOES-NOT-EXIST"]},
+      {"id":"CYCLE-A","title":"Ciclo A","status":"ready","blockedBy":["CYCLE-B"]},
+      {"id":"CYCLE-B","title":"Ciclo B","status":"ready","blockedBy":["CYCLE-A"]},
+      {"id":"DUP","title":"Duplicata 1","status":"ready","blockedBy":[]},
+      {"id":"DUP","title":"Duplicata 2","status":"ready","blockedBy":[]},
+      {"id":"UNKNOWN","title":"Estado futuro","status":"waiting_external","blockedBy":[]}
+    ]
+  }
+}

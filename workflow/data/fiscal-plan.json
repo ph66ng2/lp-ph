@@ -1,0 +1,88 @@
+{
+  "kind": "roadmap-current",
+  "basedOnCapturedAt": "2026-09-30T12:59:05+00:00",
+  "title": "AutoOS Fiscal PROD",
+  "decision": "Priorizar uma OS real da BMITAG com emissão fiscal rastreável antes de SaaS, financeiro e integração entre desktops.",
+  "warning": "Roadmap mesclado nos três repositórios em 30/09/2026. A captura publicada inclui os roadmaps, a reconciliação e a atualização de status do PR #104; status e elegibilidade do grafo vêm dela. Próximo ticket AutoOS no plano revisado: AO-SUITE-001. PowerSync somente no futuro Mobile Field.",
+  "phases": [
+    {
+      "number": "01",
+      "title": "Alinhar base e contrato",
+      "routeLabel": "Decidir o produto",
+      "routeOutcome": "Ownership · v2 · matriz fiscal",
+      "parallel": "Governança, ownership e matriz contábil podem avançar ao mesmo tempo.",
+      "exit": "Autoridade dos dados definida e FatoComercial v2 aprovado com exemplos de OS; matriz fiscal aprovada para emissão real.",
+      "items": [
+        {"repo": "AutoOs", "id": "AO-WF-RECONCILE-001", "action": "Alinhar os três workflows ao marco Fiscal PROD", "after": [], "done": "PRs de roadmap revisados juntos; status e prioridade permanecem separados."},
+        {"repo": "AutoPlatform", "id": "AP-INV-001", "action": "Conciliar merge do PR #9 e estado do ticket", "after": [], "done": "Conferir evidências e registrar o estado correto no workflow por revisão."},
+        {"repo": "AutoOs", "id": "AO-SUITE-001", "action": "Definir AutoOS como autoridade do Core deste produto", "after": [], "done": "Matriz de ownership aprovada para cliente, produto, serviço, estoque, equipamento e OS."},
+        {"repo": "AutoPlatform", "id": "AP-FISC-ACCOUNTING-EXT-001", "action": "Obter matriz fiscal da BMITAG validada pela contabilidade", "after": [], "done": "Cenários de serviço, mercadoria e operação mista documentados e aprovados."},
+        {"repo": "AutoPlatform", "id": "AP-CONTRACT-002", "action": "Versionar FatoComercial faturável v2", "after": ["AO-SUITE-001"], "done": "Snapshot imutável validado com OS reais; v1 continua compatível."}
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Produzir, receber e calcular",
+      "routeLabel": "Ligar OS ao Fiscal",
+      "routeOutcome": "Snapshot · ingestão · núcleo",
+      "parallel": "Produtor AutoOS, ingestão AutoPlatform e núcleo fiscal são frentes paralelas sobre o contrato v2.",
+      "exit": "Uma OS faturável gera um fato v2 que o AutoPlatform valida, persiste e entrega ao núcleo fiscal em homologação.",
+      "items": [
+        {"repo": "AutoOs", "id": "AO-SUITE-002", "action": "Produzir snapshot faturável a partir da OS", "after": ["AO-SUITE-001", "AP-CONTRACT-002"], "done": "Origem, versão e reprocessamento possuem regra explícita."},
+        {"repo": "AutoPlatform", "id": "AP-INTEGRATION-001", "action": "Redefinir como ingestão idempotente do fato AutoOS", "after": ["AP-CONTRACT-002", "AP-ID-001", "AP-OBS-001"], "done": "Autenticação, validação, persistência, id estável e conflito de repetição demonstrados."},
+        {"repo": "AutoPlatform", "id": "AP-FISC-CORE-001", "action": "Desacoplar o núcleo fiscal de AP-SALE-001", "after": ["AP-CONTRACT-002"], "done": "Aceita fato faturável sem venda standalone nem estoque central."}
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Emissão e experiência na OS",
+      "routeLabel": "Emitir e operar",
+      "routeOutcome": "NFS-e + NF-e · revisão · retorno",
+      "parallel": "Adapters NFS-e/NF-e e telas AutoOS podem avançar em paralelo com contratos e respostas simuladas.",
+      "exit": "Revisão humana, emissão, retorno, rejeição, documentos e vínculo com OS funcionam juntos em homologação.",
+      "items": [
+        {"repo": "AutoPlatform", "id": "AP-FISC-CONFIG-001", "action": "Configurar emissor no backend", "after": ["AP-FISC-CORE-001", "AP-FISC-ACCOUNTING-EXT-001"], "done": "Configuração fiscal, certificado e credenciais protegidos no servidor."},
+        {"repo": "AutoPlatform", "id": "AP-FISC-NFSE-001", "action": "Implementar e homologar adapter NFS-e", "after": ["AP-FISC-CONFIG-001"], "done": "Emissão, consulta e falhas de NFS-e observáveis em homologação."},
+        {"repo": "AutoPlatform", "id": "AP-FISC-NFE-001", "action": "Implementar e homologar adapter NF-e", "after": ["AP-FISC-CONFIG-001"], "done": "Emissão, consulta e falhas de NF-e observáveis em homologação."},
+        {"repo": "AutoOs", "id": "AO-FISC-001", "action": "Criar fila Pronto para Faturar", "after": ["AO-SUITE-002"], "done": "OS faturáveis aparecem uma vez com itens e valor identificáveis."},
+        {"repo": "AutoOs", "id": "AO-FISC-002", "action": "Criar revisão fiscal humana", "after": ["AO-FISC-001"], "done": "Serviço e produto aparecem separados antes da confirmação."},
+        {"repo": "AutoOs", "id": "AO-FISC-003", "action": "Integrar AutoOS à API fiscal", "after": ["AO-SUITE-002", "AP-INTEGRATION-001"], "done": "Envio e resposta correlacionados à OS e ao fato comercial."},
+        {"repo": "AutoOs", "id": "AO-FISC-004", "action": "Exibir estados e rejeições", "after": ["AO-FISC-003"], "done": "Resultado parcial, erro corrigível e nova tentativa são compreensíveis."},
+        {"repo": "AutoOs", "id": "AO-FISC-005", "action": "Exibir XML e documentos auxiliares", "after": ["AO-FISC-003"], "done": "Documentos persistidos podem ser recuperados pela operação autorizada."},
+        {"repo": "AutoOs", "id": "AO-FISC-006", "action": "Vincular documentos fiscais à OS", "after": ["AO-FISC-003"], "done": "A OS mostra fatos, documentos e estados com histórico consultável."}
+      ]
+    },
+    {
+      "number": "04",
+      "title": "Provar Fiscal PROD BMITAG",
+      "routeLabel": "Provar em produção",
+      "routeOutcome": "Gates · documentos reais · OS",
+      "parallel": "Gate de backend e gate da jornada AutoOS avaliam evidências diferentes; o piloto reúne os dois.",
+      "exit": "Uma NFS-e e uma NF-e reais no conjunto do piloto, com consulta, XML, documento auxiliar, vínculo com OS, rejeição tratável e idempotência.",
+      "items": [
+        {"repo": "AutoPlatform", "id": "AP-FISC-GATE-001", "action": "Homologar núcleo e ambos adapters", "after": ["AP-FISC-NFSE-001", "AP-FISC-NFE-001", "AP-OBS-001"], "done": "Emissão, consulta, rejeição e cancelamento avaliados no ambiente apropriado."},
+        {"repo": "AutoOs", "id": "AO-FISC-GATE-001", "action": "Homologar jornada completa da OS", "after": ["AO-FISC-001", "AO-FISC-002", "AO-FISC-003", "AO-FISC-004", "AO-FISC-005", "AO-FISC-006", "AP-FISC-GATE-001"], "done": "Orçamento até histórico fiscal da OS demonstrados em homologação integrada."},
+        {"repo": "AutoPlatform", "id": "AP-FISC-PROD-001", "action": "Executar piloto fiscal real controlado", "after": ["AP-FISC-GATE-001", "AO-FISC-GATE-001", "AP-FISC-ACCOUNTING-EXT-001"], "done": "Evidências reais de NFS-e e NF-e, retorno, documentos, vínculo, rejeição e idempotência."}
+      ]
+    }
+  ],
+  "nextMilestone": {
+    "title": "Financeiro v1, após Fiscal PROD por prioridade",
+    "items": [
+      {"repo": "AutoPlatform", "id": "AP-REC-001", "action": "Contas a Receber v1"},
+      {"repo": "AutoPlatform", "id": "AP-REC-002", "action": "Recebimento manual"},
+      {"repo": "AutoOs", "id": "AO-FIN-001", "action": "Consulta financeira básica"}
+    ]
+  },
+  "deferred": [
+    {"label": "AutoOS · assinatura, fotos e provisionamento", "ids": ["AO-SUB-003", "AO-PHOTO-003", "AO-PHOTO-004", "AO-PHOTO-005", "AO-PHOTO-006", "AO-PHOTO-007", "AO-PHOTO-008", "AO-PHOTO-009", "AO-AUTH-OPS-001"]},
+    {"label": "AutoPlatform · venda, estoque central, SaaS e expansão", "ids": ["AP-SALE-001", "AP-INV-CUTOVER-001", "AP-BILL-001", "AP-BILL-002", "AP-BILL-003", "AP-BILL-GATE-001", "AP-PAY-CORE-001", "AP-PAY-GW-001", "AP-PAY-GATE-001", "AP-SIC-001", "AP-SIC-GATE-001", "AP-PORTAL-001", "AP-PORTAL-PAY-001", "AP-CLIENTS-PORTAL-EXT-001", "AP-PORTAL-GATE-001", "AP-OFFLINE-001", "AP-REL-GATE-001"]},
+    {"label": "AutoBO · estoque, venda e produto separado", "ids": ["BO-INV-001", "BO-INV-002", "BO-SALE-001", "BO-PAY-UI-001", "BO-SIC-GO-001", "BO-INV-AUTOOS-001", "BO-MIG-001", "BO-STANDALONE-GATE-001", "BO-REL-GATE-001"]}
+  ],
+  "superseded": [
+    {"label": "AutoOS · antigo PowerSync/Offline desktop, reservado ao futuro Mobile Field", "ids": ["AO-PS-005", "AO-PS-006", "AO-PS-007", "AO-PS-008", "AO-SUB-004", "AO-SUB-005"]},
+    {"label": "AutoBO · Fiscal desktop a migrar para AutoOS + AutoPlatform", "ids": ["BO-FISC-CORE-001", "BO-FISC-EXT-001", "BO-FISC-NFE-001", "BO-FISC-UI-001", "BO-FISC-STATUS-001", "BO-FISC-GATE-001"]},
+    {"label": "AutoBO · handshake entre dois desktops", "ids": ["BO-SUITE-002", "BO-SUITE-003", "BO-SUITE-004", "BO-SUITE-EXT-001", "BO-SUITE-GATE-001"]},
+    {"label": "AutoPlatform · gate antigo Produto em Sincronia", "ids": ["AP-INTEGRATION-GATE-001", "AP-PRODUCT-SYNC-EXT-001"]}
+  ]
+}

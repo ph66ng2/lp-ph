@@ -1,0 +1,51 @@
+name: Atualizar mapa de execução
+
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-execution-map
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ler os três workflows
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 workflow/refresh_snapshot.py
+      - name: Publicar somente quando houver mudança
+        run: |
+          if git diff --quiet -- workflow/data/snapshot.json; then
+            echo 'Os workflows não mudaram.'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add workflow/data/snapshot.json
+            git commit -m 'Atualizar captura dos tickets'
+            git push
+          fi
+      - name: Alertar se alguma fonte falhou
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+          with open('workflow/data/snapshot.json', encoding='utf-8') as file:
+              records = json.load(file)['repositories']
+          failures = [f"{record['repo']}: {record['readStatus']}" for record in records if record['readStatus'] != 'ok']
+          if failures:
+              print('Falha na leitura: ' + ', '.join(failures))
+              sys.exit(1)
+          PY

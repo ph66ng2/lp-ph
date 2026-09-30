@@ -1,43 +1,158 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://ph66ng2.github.io/AutoOs/">
-    <link rel="canonical" href="https://ph66ng2.github.io/AutoOs/">
-    <title>Abrindo AutoOS Workflow</title>
-    <style>
-        :root {
-            color-scheme: dark;
-            font-family: "IBM Plex Mono", ui-monospace, monospace;
-            background: #111318;
-            color: #f4f5f7;
-        }
-
-        body {
-            display: grid;
-            min-height: 100vh;
-            margin: 0;
-            place-items: center;
-        }
-
-        main {
-            padding: 24px;
-            text-align: center;
-        }
-
-        a {
-            color: #64d8a5;
-        }
-    </style>
-    <script>
-        window.location.replace("https://ph66ng2.github.io/AutoOs/");
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b29">
+  <title>Fiscal PROD BMITAG · Mapa de execução</title>
+  <link rel="stylesheet" href="./styles.css?v=20260929-5">
 </head>
 <body>
-    <main>
-        <p>Redirecionando para o painel AutoOS.</p>
-        <a href="https://ph66ng2.github.io/AutoOs/">Abrir AutoOS Workflow</a>
-    </main>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Execution Map, início">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 16h8M18 8h8M18 24h8M14 16l4-8m-4 8 4 8"/><circle cx="5" cy="16" r="2.5"/><circle cx="27" cy="8" r="2.5"/><circle cx="27" cy="24" r="2.5"/></svg></span>
+      <span><strong>Fiscal PROD</strong><small>mapa de execução</small></span>
+    </a>
+    <div class="capture-badge"><span class="live-dot"></span><span>CAPTURA PUBLICADA · ATUALIZAÇÃO PERIÓDICA</span></div>
+    <div class="top-actions">
+      <span id="captured-at" class="capture-time">Lendo captura…</span>
+      <button id="manage-projects" class="button button-secondary" type="button" aria-haspopup="dialog"><span aria-hidden="true">＋</span> Projetos</button>
+      <button id="refresh-snapshot" class="button button-primary" type="button" title="Entender quando os dados são atualizados"><span aria-hidden="true">↻</span> Atualização dos dados</button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">PRIORIDADE 01 <span> / </span> OPERAÇÃO REAL BMITAG</p>
+        <h1>Uma OS real. Dois tipos de nota. Histórico completo.</h1>
+        <p class="intro-copy">Levar o fluxo do AutoOS à emissão de NFS-e e NF-e pelo AutoPlatform, com revisão humana, retorno e documentos vinculados à OS.</p>
+      </div>
+      <div class="capture-note"><span class="note-icon" aria-hidden="true">i</span><span><strong>Snapshot, não tempo real.</strong> O site verifica os workflows periodicamente. Recarregue a página para ver a captura publicada mais recente.</span></div>
+    </section>
+
+    <section class="metric-grid" aria-label="Resumo da captura">
+      <article class="metric-card metric-total"><span class="metric-icon" aria-hidden="true">⌘</span><div><strong id="total-tickets">—</strong><span>tickets na captura</span></div><small id="repo-count">3 repositórios</small></article>
+      <article class="metric-card"><span class="metric-icon metric-green" aria-hidden="true">✓</span><div><strong id="completed-count">—</strong><span>concluídos · merged</span></div><small>estado declarado</small></article>
+      <article class="metric-card"><span class="metric-icon metric-blue" aria-hidden="true">↗</span><div><strong id="eligible-count">—</strong><span>liberados tecnicamente</span></div><small>não indica prioridade</small></article>
+      <article class="metric-card"><span class="metric-icon metric-orange" aria-hidden="true">◷</span><div><strong id="waiting-count">—</strong><span>ready · aguardando deps</span></div><small>blockers ainda não merged</small></article>
+      <article class="metric-card"><span class="metric-icon metric-red" aria-hidden="true">!</span><div><strong id="manual-blocked-count">—</strong><span>blocked no workflow</span></div><small>decisão humana / externa</small></article>
+    </section>
+
+    <section class="workspace plan-mode" aria-label="Plano e mapa de execução">
+      <aside class="filter-panel" aria-label="Busca e filtros">
+        <div class="panel-heading"><div><span class="eyebrow">EXPLORAR</span><h2>Filtros</h2></div><button id="clear-filters" class="text-button" type="button">Limpar</button></div>
+        <label class="search-field"><span aria-hidden="true">⌕</span><span class="sr-only">Buscar por ID ou título</span><input id="search" type="search" placeholder="ID ou trecho do título" autocomplete="off"></label>
+        <p class="filter-label">REPOSITÓRIO</p>
+        <div id="repo-filters" class="check-list"></div>
+        <label class="select-label" for="status-filter">Estado no workflow</label>
+        <select id="status-filter"><option value="all">Todos os estados</option></select>
+        <label class="select-label" for="situation-filter">Situação calculada</label>
+        <select id="situation-filter">
+          <option value="all">Todas as situações</option>
+          <option value="eligible">Pode começar agora</option>
+          <option value="waiting">Aguardando dependências</option>
+          <option value="manual-blocked">Bloqueio humano / externo</option>
+          <option value="in-progress">Em andamento</option>
+          <option value="in-review">Em revisão</option>
+          <option value="completed">Concluído</option>
+          <option value="data-error">Com erro de dados</option>
+          <option value="unknown">Estado desconhecido</option>
+        </select>
+        <div class="result-count"><span id="result-count">—</span><span>tickets correspondem</span></div>
+        <div class="mini-legend">
+          <p class="filter-label">ESTADO DECLARADO</p>
+          <span><i class="legend-dot ready"></i> ready</span><span><i class="legend-dot progress"></i> em curso / review</span><span><i class="legend-dot merged"></i> merged</span><span><i class="legend-dot blocked"></i> blocked</span><span><i class="legend-dot unknown"></i> desconhecido</span>
+        </div>
+      </aside>
+
+      <section class="map-column" aria-label="Grafo de execução">
+        <div class="view-tabs" role="tablist" aria-label="Visão do mapa">
+          <button class="view-tab active" id="tab-plan" role="tab" aria-selected="true" aria-controls="plan-view" type="button" data-view="plan"><span aria-hidden="true">◎</span> Foco atual <span class="tab-count">Fiscal PROD</span></button>
+          <button class="view-tab" id="tab-map" role="tab" aria-selected="false" aria-controls="map-view" type="button" data-view="map"><span aria-hidden="true">⌘</span> DAG capturado <span id="graph-total" class="tab-count">—</span></button>
+          <button class="view-tab" id="tab-ready" role="tab" aria-selected="false" aria-controls="ready-view" type="button" data-view="ready"><span aria-hidden="true">↗</span> Elegibilidade técnica <span id="ready-total" class="tab-count">—</span></button>
+          <button class="view-tab" id="tab-scenarios" role="tab" aria-selected="false" aria-controls="scenario-view" type="button" data-view="scenarios"><span aria-hidden="true">◇</span> Cenários</button>
+          <button class="view-tab" id="tab-integrity" role="tab" aria-selected="false" aria-controls="integrity-view" type="button" data-view="integrity"><span aria-hidden="true">!</span> Integridade <span id="issue-total" class="tab-count warning-count">—</span></button>
+        </div>
+
+        <div id="plan-view" class="tab-panel active" role="tabpanel" aria-labelledby="tab-plan">
+          <div class="plan-hero"><div><p class="eyebrow">MARCO 01 · PRODUTO INTERNO</p><h2>Fiscal PROD BMITAG</h2><p>Uma OS gera um fato faturável. Uma pessoa revisa. O backend emite os documentos aplicáveis. O AutoOS mostra estado, XML, documento auxiliar e histórico na própria OS.</p></div><div class="plan-hero-side"><strong>Prova de conclusão</strong><span>No conjunto do piloto: <b>1 NFS-e real + 1 NF-e real</b>, consulta, vínculo com a OS, falhas tratáveis e nenhuma emissão duplicada.</span></div></div>
+          <div class="role-strip" aria-label="Papel de cada repositório"><div><span>01</span><strong>AutoOS</strong><small>Operação, OS e interface fiscal</small></div><div><span>02</span><strong>AutoPlatform</strong><small>Contrato, ingestão e emissão</small></div><div><span>03</span><strong>AutoBO</strong><small>Código doador e histórico</small></div></div>
+          <section class="plan-route-section"><div class="plan-section-heading"><div><p class="eyebrow">CAMINHO ATÉ O MARCO</p><h3>Quatro decisões e entregas</h3></div><span class="route-hint">Clique numa etapa para ver os tickets</span></div><div id="plan-route" class="plan-route"></div></section>
+          <div class="plan-now"><div><p class="eyebrow">PRÓXIMO TICKET AUTOOS</p><h3>AO-SUITE-001 · definir ownership do Core</h3><p>O <a href="https://github.com/ph66ng2/AutoOs/pull/103" target="_blank" rel="noreferrer">PR #103</a> já reconciliou o catálogo. O <a href="https://github.com/ph66ng2/AutoOs/pull/104" target="_blank" rel="noreferrer">PR #104</a> registrou sua conclusão no workflow. O <a href="https://github.com/ph66ng2/AutoOs/pull/101" target="_blank" rel="noreferrer">PR #101</a> de Insumos Online já foi mesclado e pertence ao histórico SaaS. Contrato v2 e matriz fiscal podem avançar em paralelo.</p></div><button type="button" id="open-first-phase" class="button button-primary">Ver primeiros tickets <span aria-hidden="true">↓</span></button></div>
+          <div class="plan-rule"><span aria-hidden="true">i</span><p><strong>Roadmaps, reconciliação e status final integrados.</strong> O DAG reflete as branches na data da captura, já com o PR #104. Prioridade, status e elegibilidade são informações separadas.</p></div>
+          <div class="plan-prs" aria-label="Pull requests do roadmap"><span>ROADMAP E RECONCILIAÇÃO MESCLADOS</span><a href="https://github.com/ph66ng2/AutoOs/pull/102" target="_blank" rel="noreferrer">AutoOS #102 ↗</a><a href="https://github.com/ph66ng2/AutoPlatform/pull/10" target="_blank" rel="noreferrer">AutoPlatform #10 ↗</a><a href="https://github.com/ph66ng2/AutoBO/pull/9" target="_blank" rel="noreferrer">AutoBO #9 ↗</a><a href="https://github.com/ph66ng2/AutoOs/pull/103" target="_blank" rel="noreferrer">Reconciliação #103 ↗</a><a href="https://github.com/ph66ng2/AutoOs/pull/104" target="_blank" rel="noreferrer">Conclusão #104 ↗</a></div>
+          <p id="plan-snapshot-note" class="plan-snapshot-note">Conferindo versão do plano e da captura…</p>
+          <div class="plan-section-heading" id="plan-details"><div><p class="eyebrow">EXECUÇÃO DETALHADA</p><h3>Tickets e critérios de saída</h3></div><a href="./PLANO-FISCAL-PROPOSTO.md" target="_blank" rel="noreferrer">Ler plano detalhado ↗</a></div>
+          <div id="plan-phases" class="plan-phases"></div>
+          <div id="plan-next" class="plan-next"></div>
+          <div class="plan-bottom-grid"><section><p class="eyebrow">PAUSA DE PRIORIDADE</p><h3>Trabalho adiado</h3><p>Os status atuais continuam visíveis no mapa. Adiar não conclui nem bloqueia um ticket.</p><div id="plan-deferred"></div></section><section><p class="eyebrow">ESCOPO SUBSTITUÍDO</p><h3>Desktop Offline e rotas antigas</h3><p>PowerSync fica reservado ao futuro Mobile Field. AutoBO continua como fonte de código e regras. Os tickets antigos preservam seu status real.</p><div id="plan-superseded"></div></section></div>
+        </div>
+
+        <div id="map-view" class="tab-panel" role="tabpanel" aria-labelledby="tab-map" hidden>
+          <div class="map-toolbar">
+            <div class="map-caption"><span class="caption-mark" aria-hidden="true">↔</span><div><strong>Predecessores à esquerda · sucessores à direita</strong><small id="map-caption">Cada seta confirmada vem de blockedBy.</small></div></div>
+            <div class="zoom-controls" aria-label="Controles do mapa">
+              <button id="zoom-out" type="button" aria-label="Diminuir zoom" title="Diminuir zoom">−</button><button id="zoom-in" type="button" aria-label="Aumentar zoom" title="Aumentar zoom">+</button><button id="fit-map" type="button" aria-label="Enquadrar tudo" title="Enquadrar tudo">⤢ <span>Enquadrar</span></button><button id="reset-map" type="button" aria-label="Voltar ao estado inicial" title="Voltar ao estado inicial">↺ <span>Início</span></button>
+            </div>
+          </div>
+          <div id="demo-banner" class="demo-banner hidden" role="status"><span>◇</span><div><strong id="demo-title">Cenário de demonstração</strong><small id="demo-description"></small></div><button id="return-real" class="button button-secondary" type="button">Voltar à captura</button></div>
+          <div class="graph-viewport" id="graph-viewport" aria-label="Área interativa do grafo; arraste para mover e use a roda para zoom">
+            <svg id="graph" role="group" aria-label="Tickets conectados por dependências confirmadas" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow-confirmed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrow-confirmed"/></marker>
+                <marker id="arrow-suggested" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrow-suggested"/></marker>
+              </defs>
+              <g id="graph-content"></g>
+            </svg>
+            <div id="empty-map" class="empty-state hidden"><span aria-hidden="true">⌕</span><strong>Nenhum ticket corresponde</strong><p>Limpe os filtros ou tente outro termo.</p></div>
+          </div>
+          <div class="graph-legend" aria-label="Legenda de linhas e marcadores">
+            <span><i class="line-sample"></i> dependência confirmada · conta para liberação</span><span><i class="line-sample suggested-line"></i> relação sugerida · não conta para liberação</span><span class="legend-direction">seta = bloqueador → ticket dependente</span>
+          </div>
+          <div class="graph-foot"><span id="context-note">Arraste para mover · roda / pinça para zoom · selecione um nó para focar.</span><span id="integrity-summary">Verificando integridade…</span></div>
+        </div>
+
+        <div id="ready-view" class="tab-panel" role="tabpanel" aria-labelledby="tab-ready" hidden>
+          <div class="list-intro"><div><p class="eyebrow">STATUS + DEPENDÊNCIAS, SEM PRIORIDADE AUTOMÁTICA</p><h2>Liberação técnica</h2><p id="ready-note">Elegibilidade calculada pelas regras do workflow. A prioridade de execução é uma decisão separada.</p></div><span id="ready-list-count" class="large-count">—</span></div>
+          <div id="ready-groups" class="ready-groups"></div>
+        </div>
+
+        <div id="scenario-view" class="tab-panel" role="tabpanel" aria-labelledby="tab-scenarios" hidden>
+          <div class="list-intro"><div><p class="eyebrow">FIXTURES LOCAIS · NÃO ALTERAM OS WORKFLOWS</p><h2>Demonstração de dependências</h2><p>Carregue um exemplo para ver o grafo e o cálculo mudarem a partir dos dados, sem IDs tratados especialmente pelo produto.</p></div><span class="large-count">7</span></div>
+          <div class="scenario-layout"><div id="scenario-list" class="scenario-list" role="list"></div><div id="scenario-notes" class="scenario-notes"></div></div>
+        </div>
+
+        <div id="integrity-view" class="tab-panel" role="tabpanel" aria-labelledby="tab-integrity" hidden>
+          <div class="list-intro"><div><p class="eyebrow">VALIDAÇÃO DA CAPTURA</p><h2>Integridade e origem</h2><p>Falhas não removem silenciosamente os dados dos outros repositórios. Sugestões entre repositórios ficam separadas.</p></div><span id="integrity-count-large" class="large-count">—</span></div>
+          <div id="integrity-list" class="integrity-list"></div>
+          <section class="source-section"><div class="section-title"><div><p class="eyebrow">VERSÃO POR FONTE</p><h3>Commits lidos</h3></div><span id="freshness-label" class="freshness-label">Snapshot local</span></div><div id="source-list" class="source-list"></div></section>
+          <section class="suggestion-section"><div class="section-title"><div><p class="eyebrow">NÃO BLOQUEIA NEM LIBERA</p><h3>Relações sugeridas</h3></div><span id="suggestion-count" class="soft-badge">—</span></div><div id="suggestion-list" class="suggestion-list"></div></section>
+        </div>
+      </section>
+
+      <aside class="detail-panel" aria-label="Detalhes do ticket">
+        <div id="detail-empty" class="detail-empty"><div class="detail-empty-icon" aria-hidden="true">⌖</div><span class="eyebrow">DETALHES DO TICKET</span><h2>Selecione um nó</h2><p>Veja o estado declarado, a situação calculada, o que ele espera e o que libera.</p><div class="detail-hint"><kbd>Enter</kbd><span>também abre um ticket focado</span></div></div>
+        <div id="detail-content" class="detail-content hidden"></div>
+      </aside>
+    </section>
+
+    <footer class="page-footer"><span><strong>Fiscal PROD BMITAG</strong> · Mapa de execução</span><span>Dados dos workflows públicos · atualização periódica no GitHub Pages</span></footer>
+  </main>
+
+  <dialog id="projects-dialog" class="projects-dialog" aria-labelledby="projects-title">
+    <form method="dialog" class="dialog-top"><div><p class="eyebrow">SIMULAÇÃO LOCAL</p><h2 id="projects-title">Projetos conectados</h2><p>Estes campos mostram a jornada futura. Não há login nem alteração de configuração no GitHub.</p></div><button class="close-button" value="close" aria-label="Fechar">×</button></form>
+    <div class="simulation-callout"><span aria-hidden="true">◇</span><span>Seleção de repositórios simulada com as três fontes desta captura. Cada linha pode pertencer a Empresa ou Pessoal. Nenhum outro repositório é importado automaticamente.</span></div>
+    <div id="project-config-list" class="project-config-list"></div>
+    <div class="dialog-actions"><span id="project-save-status">Alterações ficam só nesta sessão.</span><button id="save-project-config" class="button button-primary" type="button">Salvar simulação</button></div>
+  </dialog>
+
+  <dialog id="snapshot-dialog" class="projects-dialog short-dialog" aria-labelledby="snapshot-title">
+    <form method="dialog" class="dialog-top"><div><p class="eyebrow">ATUALIZAÇÃO PERIÓDICA</p><h2 id="snapshot-title">Quando os tickets aparecem?</h2><p>Uma rotina do GitHub verifica os workflows a cada 30 minutos e publica uma nova captura quando os dados mudam.</p></div><button class="close-button" value="close" aria-label="Fechar">×</button></form>
+    <ol class="command-steps"><li>O ticket precisa estar registrado na branch acompanhada de seu repositório: <code>AutoOs/feature</code>, <code>AutoBO/main</code> ou <code>AutoPlatform/main</code>.</li><li>A rotina relê os três arquivos e publica o novo snapshot após detectar mudança.</li><li>Recarregue esta página para ver os dados publicados. A fila do GitHub Pages pode acrescentar alguns minutos.</li></ol>
+    <p class="simulation-callout"><span aria-hidden="true">i</span><span>O plano Fiscal PROD é editorial: mudanças nos tickets atualizam o DAG e os estados capturados, mas a recomendação de prioridade precisa de revisão humana.</span></p>
+  </dialog>
+
+  <script type="module" src="./app.js?v=20260930-4"></script>
 </body>
 </html>
