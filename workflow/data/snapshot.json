@@ -1,6 +1,6 @@
 {
   "captureMode": "static-github-api-snapshot",
-  "capturedAt": "2026-09-30T12:59:05+00:00",
+  "capturedAt": "2026-09-30T18:24:27+00:00",
   "repositories": [
     {
       "owner": "ph66ng2",
@@ -10,20 +10,18 @@
       "readStatus": "ok",
       "visibility": "public",
       "defaultBranch": "master",
-      "commit": "661574d10787a6421c6a18996915b2180829f11d",
-      "commitAt": "2026-09-30T12:43:33Z",
-      "fileBlobSha": "05991d2ce5cb1334c3b7c7544665875bafb73652",
-      "capturedAt": "2026-09-30T12:59:05+00:00",
+      "commit": "1fc6c5ffc6ce53881b3b246b606beb9bdf45c4dd",
+      "commitAt": "2026-09-30T15:37:46Z",
+      "fileBlobSha": "abfa845850f2514e73a9313164f39f397e281825",
+      "capturedAt": "2026-09-30T18:24:27+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
-        "addedIds": [
-          "AO-SAAS-PARITY-001"
-        ],
+        "addedIds": [],
         "removedIds": [],
         "removedImpacts": [],
         "titleChanges": []
       },
-      "sourceUrl": "https://github.com/ph66ng2/AutoOs/blob/661574d10787a6421c6a18996915b2180829f11d/.workflow/workflow.json",
+      "sourceUrl": "https://github.com/ph66ng2/AutoOs/blob/1fc6c5ffc6ce53881b3b246b606beb9bdf45c4dd/.workflow/workflow.json",
       "workflow": {
         "project": "AutoOS — operação interna BMITAG e Fiscal PROD",
         "roadmap": {
@@ -3758,7 +3756,7 @@
           {
             "id": "AO-SUITE-001",
             "title": "Definir ownership do Core AutoOS para o produto interno",
-            "status": "ready",
+            "status": "merged",
             "blockedBy": [],
             "objective": "Aprovar a fonte autoritativa de cada dado antes de produzir fatos faturáveis.",
             "context": "A operação já possui cliente, produto, serviço, equipamento, OS e estoque; duplicar autoridade no AutoPlatform ou AutoBO criaria divergência.",
@@ -3806,7 +3804,8 @@
             "risks": [
               "Confundir projeção de dados com nova autoridade.",
               "Ignorar dados legados já presentes no AutoOS."
-            ]
+            ],
+            "completedAt": "2026-09-30"
           },
           {
             "id": "AO-SUITE-002",
@@ -5167,7 +5166,7 @@
       "commit": "22f502ecb92fd963fc178afc60fcac52645290f2",
       "commitAt": "2026-09-30T00:02:55Z",
       "fileBlobSha": "496a59a9b33dd20e45411eed3c4abdb52d175c93",
-      "capturedAt": "2026-09-30T12:59:05+00:00",
+      "capturedAt": "2026-09-30T18:24:27+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6812,7 +6811,7 @@
       "commit": "a34ceae48377d5908f13b6a05d88c62c2f0fce93",
       "commitAt": "2026-09-30T00:02:44Z",
       "fileBlobSha": "02bc41a36d463415c3a7a307ac5c3ff24d5b3d93",
-      "capturedAt": "2026-09-30T12:59:05+00:00",
+      "capturedAt": "2026-09-30T18:24:27+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
