@@ -1,6 +1,6 @@
 {
   "captureMode": "static-github-api-snapshot",
-  "capturedAt": "2026-09-30T18:24:27+00:00",
+  "capturedAt": "2026-10-01T20:27:51+00:00",
   "repositories": [
     {
       "owner": "ph66ng2",
@@ -10,10 +10,10 @@
       "readStatus": "ok",
       "visibility": "public",
       "defaultBranch": "master",
-      "commit": "1fc6c5ffc6ce53881b3b246b606beb9bdf45c4dd",
-      "commitAt": "2026-09-30T15:37:46Z",
+      "commit": "d772c2d9771d352debf78f703a00ad0c13dd945a",
+      "commitAt": "2026-10-01T01:21:31Z",
       "fileBlobSha": "abfa845850f2514e73a9313164f39f397e281825",
-      "capturedAt": "2026-09-30T18:24:27+00:00",
+      "capturedAt": "2026-10-01T20:27:51+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -21,7 +21,7 @@
         "removedImpacts": [],
         "titleChanges": []
       },
-      "sourceUrl": "https://github.com/ph66ng2/AutoOs/blob/1fc6c5ffc6ce53881b3b246b606beb9bdf45c4dd/.workflow/workflow.json",
+      "sourceUrl": "https://github.com/ph66ng2/AutoOs/blob/d772c2d9771d352debf78f703a00ad0c13dd945a/.workflow/workflow.json",
       "workflow": {
         "project": "AutoOS — operação interna BMITAG e Fiscal PROD",
         "roadmap": {
@@ -5166,7 +5166,7 @@
       "commit": "22f502ecb92fd963fc178afc60fcac52645290f2",
       "commitAt": "2026-09-30T00:02:55Z",
       "fileBlobSha": "496a59a9b33dd20e45411eed3c4abdb52d175c93",
-      "capturedAt": "2026-09-30T18:24:27+00:00",
+      "capturedAt": "2026-10-01T20:27:51+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6808,10 +6808,10 @@
       "readStatus": "ok",
       "visibility": "public",
       "defaultBranch": "main",
-      "commit": "a34ceae48377d5908f13b6a05d88c62c2f0fce93",
-      "commitAt": "2026-09-30T00:02:44Z",
-      "fileBlobSha": "02bc41a36d463415c3a7a307ac5c3ff24d5b3d93",
-      "capturedAt": "2026-09-30T18:24:27+00:00",
+      "commit": "b535c70e4d7e5549555a50861095d152f56bc348",
+      "commitAt": "2026-10-01T17:45:48Z",
+      "fileBlobSha": "3d7af4b165e26d689b9bdcc4d0032011162be800",
+      "capturedAt": "2026-10-01T20:27:51+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6819,7 +6819,7 @@
         "removedImpacts": [],
         "titleChanges": []
       },
-      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/a34ceae48377d5908f13b6a05d88c62c2f0fce93/.workflow/workflow.json",
+      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/b535c70e4d7e5549555a50861095d152f56bc348/.workflow/workflow.json",
       "workflow": {
         "project": "AutoPlatform — backend Fiscal e depois Financeiro do AutoOS",
         "roadmap": {
@@ -8817,7 +8817,7 @@
           {
             "id": "AP-CONTRACT-002",
             "title": "Publicar FatoComercial faturável v2",
-            "status": "ready",
+            "status": "in_progress",
             "blockedBy": [
               "AP-CONTRACT-001"
             ],
