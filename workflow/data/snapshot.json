@@ -1,6 +1,6 @@
 {
   "captureMode": "static-github-api-snapshot",
-  "capturedAt": "2026-10-01T20:27:51+00:00",
+  "capturedAt": "2026-10-03T07:02:47+00:00",
   "repositories": [
     {
       "owner": "ph66ng2",
@@ -13,7 +13,7 @@
       "commit": "d772c2d9771d352debf78f703a00ad0c13dd945a",
       "commitAt": "2026-10-01T01:21:31Z",
       "fileBlobSha": "abfa845850f2514e73a9313164f39f397e281825",
-      "capturedAt": "2026-10-01T20:27:51+00:00",
+      "capturedAt": "2026-10-03T07:02:47+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -5166,7 +5166,7 @@
       "commit": "22f502ecb92fd963fc178afc60fcac52645290f2",
       "commitAt": "2026-09-30T00:02:55Z",
       "fileBlobSha": "496a59a9b33dd20e45411eed3c4abdb52d175c93",
-      "capturedAt": "2026-10-01T20:27:51+00:00",
+      "capturedAt": "2026-10-03T07:02:47+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6808,10 +6808,10 @@
       "readStatus": "ok",
       "visibility": "public",
       "defaultBranch": "main",
-      "commit": "b535c70e4d7e5549555a50861095d152f56bc348",
-      "commitAt": "2026-10-01T17:45:48Z",
-      "fileBlobSha": "3d7af4b165e26d689b9bdcc4d0032011162be800",
-      "capturedAt": "2026-10-01T20:27:51+00:00",
+      "commit": "077f1a00a4ed0d8d3cce2456cfcb6bed359b8fe5",
+      "commitAt": "2026-10-03T02:25:54Z",
+      "fileBlobSha": "cf5749caf06b2a3c558a35903960abc121580e21",
+      "capturedAt": "2026-10-03T07:02:47+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6819,7 +6819,7 @@
         "removedImpacts": [],
         "titleChanges": []
       },
-      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/b535c70e4d7e5549555a50861095d152f56bc348/.workflow/workflow.json",
+      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/077f1a00a4ed0d8d3cce2456cfcb6bed359b8fe5/.workflow/workflow.json",
       "workflow": {
         "project": "AutoPlatform — backend Fiscal e depois Financeiro do AutoOS",
         "roadmap": {
@@ -7626,7 +7626,7 @@
             "objective": "Registrar decisões contábeis que condicionam configuração e providers fiscais.",
             "scope": [
               "Receber matriz assinada/revisada.",
-              "Mapear cenários de serviço, mercadoria e venda mista."
+              "Mapear cenários de serviço, mercadoria cobrada separadamente e OS com peça incluída em preço único, distinguindo peças/partes fornecidas de materiais consumidos e indicando enquadramento, base de cálculo e documentos exigidos em cada caso."
             ],
             "outOfScope": [
               "Inventar regra tributária.",
@@ -7635,6 +7635,7 @@
             "expectedBehavior": "Ticket permanece blocked até confirmação humana da contabilidade.",
             "acceptanceCriteria": [
               "Matriz cobre cenários piloto e certificados.",
+              "Para manutenção com peças, a contabilidade enfrenta expressamente a ressalva do subitem 14.01 da LC 116/2003, inclusive no preço único; se houver ISS e ICMS, define critério documental e de valoração sem inventar rateio.",
               "Lacunas e limitações estão explícitas."
             ],
             "tests": [
@@ -7678,21 +7679,23 @@
             "objective": "Criar núcleo fiscal provider-neutral que consome snapshot faturável imutável por empresa e origem.",
             "scope": [
               "Criar migrations e APIs prepare/issue/cancel a partir de FatoComercial v2.",
-              "Criar perfis, documentos, itens, eventos, artefatos, portas NFS-e/NF-e e permissão FISCAL."
+              "Criar perfis, documentos, itens, eventos, artefatos, portas NFS-e/NF-e e permissão FISCAL.",
+              "Definir entrada de decisão fiscal versionada por empresa/estabelecimento e cenário; AP-FISC-CONFIG-001 implementa seu cadastro e validação."
             ],
             "outOfScope": [
               "Adapter de provider.",
               "Emissão automática."
             ],
-            "expectedBehavior": "Fato com itens de serviço e produto prepara dois documentos correlacionados e exige confirmação humana antes de issue/cancel.",
+            "expectedBehavior": "Prepare usa decisão fiscal aprovada e vigente para empresa/estabelecimento e cenário. Preço único não determina NFS-e única: a decisão contábil fundamentada define documento(s), tributos e bases aplicáveis, inclusive para peças/partes empregadas na manutenção. Sem decisão aplicável ou valores necessários, não prepara documento para emissão e sinaliza revisão. Issue/cancel exigem confirmação humana.",
             "acceptanceCriteria": [
               "Não depende de Sale ou estoque central para preparar documentos de OS.",
               "XML é artefato principal e transições inválidas/regressivas são rejeitadas.",
-              "Idempotência inclui company_id e origem/versão do fato."
+              "Idempotência inclui company_id e origem/versão do fato.",
+              "Pricing_mode e kind dos itens não determinam sozinhos o tipo ou a quantidade de documentos; bundle não gera rateio fiscal fictício."
             ],
             "tests": [
               "State machine, idempotência concorrente e tenant A/B com FatoComercial v2.",
-              "Fixtures de serviço, produto e misto, além de timeout seguido de consulta."
+              "Fixtures de serviço, produto, misto com cobrança separada e preço único com peça incluída; decisão ou valor fiscal necessário ausente bloqueia prepare; timeout seguido de consulta."
             ],
             "testInstructions": {
               "prerequisites": [
@@ -7700,7 +7703,7 @@
                 "Usar fixtures sintéticas e serviços falsos; não inserir dados ou credenciais BMITAG em testes automatizados."
               ],
               "steps": [
-                "Usar FatoComercial v2 sintético para serviço, produto e misto.",
+                "Usar FatoComercial v2 sintético para serviço, produto, misto itemizado e misto de preço único; fornecer decisões fiscais sintéticas aprovadas por cenário e testar ausência de decisão.",
                 "Executar cargo fmt --check, cargo clippy --workspace --all-targets -- -D warnings e cargo test --workspace; usar PostgreSQL descartável para migrations.",
                 "Simular timeout e confirmar consulta antes de retry."
               ],
@@ -7738,6 +7741,7 @@
             "objective": "Criar configuração por empresa com validação, encryption e rotação segura.",
             "scope": [
               "Implementar FiscalIssuerProfile e provider config criptografada.",
+              "Persistir decisões fiscais versionadas por empresa/estabelecimento e cenário, com aprovação e vigência, conforme a entrada definida em AP-FISC-CORE-001.",
               "Validar matriz contábil antes de READY_FOR_REVIEW."
             ],
             "outOfScope": [
@@ -7747,11 +7751,13 @@
             "expectedBehavior": "Serviço usa segredo descriptografado apenas em memória e registra auditoria sanitizada.",
             "acceptanceCriteria": [
               "Master key fica fora do banco.",
-              "Tenant A não referencia config de B."
+              "Tenant A não referencia config de B.",
+              "Decisão ausente, não aprovada ou fora da vigência bloqueia preparação; alterações não reclassificam documentos históricos."
             ],
             "tests": [
               "Encryption/rotação e negação tenant.",
-              "Config incompleta bloqueia preparação."
+              "Config incompleta bloqueia preparação.",
+              "Decisões diferentes por empresa e cenário; preço fechado sem fundamentação ou valoração exigida bloqueia preparação; documentos correlacionados quando aprovados."
             ],
             "testInstructions": {
               "prerequisites": [
@@ -7839,7 +7845,7 @@
             "blockedBy": [
               "AP-FISC-CONFIG-001"
             ],
-            "context": "Mercadorias exigem NF-e modelo 55 independente da NFS-e.",
+            "context": "O fornecimento de mercadorias e de peças/partes empregadas sujeito ao ICMS requer documento fiscal próprio quando aplicável, mesmo com preço único na OS. A matriz contábil aprovada identifica o enquadramento e os valores necessários; o núcleo não infere dispensa ou exigência de NF-e apenas pelo tipo do item ou pela forma de cobrança.",
             "objective": "Selecionar e implementar provider para autorização, consulta, cancelamento, inutilização e contingência aplicável.",
             "scope": [
               "Avaliar provider pela matriz fiscal.",
@@ -7849,10 +7855,10 @@
               "NFS-e.",
               "Documento real sem autorização."
             ],
-            "expectedBehavior": "NF-e de mercadoria converge com chave, XML, DANFE e eventos auditáveis.",
+            "expectedBehavior": "Quando o cenário fundamentado exigir NF-e, a emissão converge com chave, XML, DANFE e eventos auditáveis; se a OS de preço único não trouxer os valores fiscais necessários, a preparação fica pendente de revisão, sem rateio automático.",
             "acceptanceCriteria": [
               "Timeout consulta antes de retry.",
-              "Cenário misto correlaciona NF-e e NFS-e sem acoplá-los."
+              "Quando a decisão fiscal aprovada exigir NF-e e NFS-e, os documentos ficam correlacionados sem acoplá-los; preço único não dispensa NF-e exigida para peças/partes fornecidas."
             ],
             "tests": [
               "Autorização/rejeição/consulta/cancelamento.",
@@ -7905,7 +7911,7 @@
             ],
             "expectedBehavior": "Fiscal backend fica pronto para a revisão humana no AutoOS, sem depender de UI nova no AutoBO.",
             "acceptanceCriteria": [
-              "Cenários obrigatórios de serviço, produto e misto passam em homologação.",
+              "Cenários obrigatórios de serviço, produto, misto com cobrança separada e preço único com peça incluída passam em homologação conforme decisões fiscais aprovadas.",
               "Nenhum segredo ou payload fiscal integral aparece em logs.",
               "Go/No-Go documenta lacunas e validação contábil."
             ],
