@@ -1,6 +1,6 @@
 {
   "captureMode": "static-github-api-snapshot",
-  "capturedAt": "2026-10-14T07:28:40+00:00",
+  "capturedAt": "2026-10-15T09:21:14+00:00",
   "repositories": [
     {
       "owner": "ph66ng2",
@@ -13,7 +13,7 @@
       "commit": "cc4f43e691d5c0810e86c5e32e5733d0aed795d7",
       "commitAt": "2026-10-09T11:48:24Z",
       "fileBlobSha": "abfa845850f2514e73a9313164f39f397e281825",
-      "capturedAt": "2026-10-14T07:28:40+00:00",
+      "capturedAt": "2026-10-15T09:21:14+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -5160,7 +5160,7 @@
       "repo": "AutoBO",
       "branch": "main",
       "path": ".workflow/workflow.json",
-      "readStatus": "ok",
+      "readStatus": "stale",
       "visibility": "public",
       "defaultBranch": "main",
       "commit": "22f502ecb92fd963fc178afc60fcac52645290f2",
@@ -6798,7 +6798,9 @@
             ]
           }
         ]
-      }
+      },
+      "readError": "HTTP Error 404: Not Found",
+      "lastAttemptAt": "2026-10-15T09:21:14+00:00"
     },
     {
       "owner": "ph66ng2",
@@ -6808,10 +6810,10 @@
       "readStatus": "ok",
       "visibility": "public",
       "defaultBranch": "main",
-      "commit": "7235f92e0f63e5ce5e44a5af2df003aa7857fddc",
-      "commitAt": "2026-10-10T02:18:01Z",
-      "fileBlobSha": "59668bf898eb352da96c5186367fb52a2c4c2356",
-      "capturedAt": "2026-10-14T07:28:40+00:00",
+      "commit": "481629f94b9fce59fdf357717eed76f47d4a5154",
+      "commitAt": "2026-10-15T08:08:21Z",
+      "fileBlobSha": "ac13ba99d570cb0f8d00adc5a90e40848a3acad1",
+      "capturedAt": "2026-10-15T09:21:14+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6819,7 +6821,7 @@
         "removedImpacts": [],
         "titleChanges": []
       },
-      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/7235f92e0f63e5ce5e44a5af2df003aa7857fddc/.workflow/workflow.json",
+      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/481629f94b9fce59fdf357717eed76f47d4a5154/.workflow/workflow.json",
       "workflow": {
         "project": "AutoPlatform — backend Fiscal e depois Financeiro do AutoOS",
         "roadmap": {
@@ -7620,38 +7622,39 @@
           {
             "id": "AP-FISC-ACCOUNTING-EXT-001",
             "title": "Receber matriz fiscal validada pela contabilidade",
-            "status": "blocked",
+            "status": "ready",
             "blockedBy": [],
-            "context": "Município, regime, CNAEs, CFOPs, NCMs, CST/CSOSN e retenções precisam de validação BMITAG.",
+            "context": "Município, regime, CNAEs, CFOPs, NCMs, CST/CSOSN e retenções precisam de validação BMITAG. A inspeção de leitura do Gerencie Aqui em 2026-10-08 encontrou OS com totais separados, NF-e em produção e cadastro de manutenção com peça marcado como Produto e NCM provisório; não encontrou NFS-e nos períodos consultados nem comprovou vínculo OS-documento. O responsável informou em 2026-10-14 que todas as OS de serviço do piloto cobram apenas mão de obra e, quando há troca, usam peças do cliente; confirmou também que a orientação escrita de NFS-e única para a OS 63 veio da contabilidade. Evidências e lacunas em docs/fiscal/AP-FISC-ACCOUNTING-EXT-001-gerencie-aqui.md.",
             "objective": "Registrar decisões contábeis que condicionam configuração e providers fiscais.",
             "scope": [
               "Receber matriz assinada/revisada.",
-              "Mapear cenários de serviço, mercadoria cobrada separadamente e OS com peça incluída em preço único, distinguindo peças/partes fornecidas de materiais consumidos e indicando enquadramento, base de cálculo e documentos exigidos em cada caso."
+              "Mapear cenários distintos de serviço sem peça, OS com peça do cliente e cobrança apenas de mão de obra, OS com serviço e peça da BMITAG cobrados em linhas separadas, OS com peça da BMITAG incluída em preço único e venda de mercadoria fora da OS; distinguir peças/partes fornecidas de materiais consumidos e indicar enquadramento, base de cálculo e documentos exigidos em cada caso."
             ],
             "outOfScope": [
               "Inventar regra tributária.",
               "Emitir documento."
             ],
-            "expectedBehavior": "Ticket permanece blocked até confirmação humana da contabilidade.",
+            "expectedBehavior": "Ticket pode avançar na preparação da matriz piloto com o relato operacional e os documentos já recebidos. O aceite e o status merged exigem confirmação escrita da contabilidade para cada cenário praticado, incluindo o código de serviço aplicável; configuração e emissão permanecem bloqueadas enquanto faltar decisão aprovada e vigente.",
             "acceptanceCriteria": [
-              "Matriz cobre cenários piloto e certificados.",
+              "Matriz cobre cenários piloto e certificados; cenário não praticado pela BMITAG fica marcado como não aplicável ao piloto com confirmação contábil, sem exigir criação de OS real.",
+              "Exemplos redigidos vinculam OS, documentos emitidos e decisão escrita do contador para serviço sem peça, manutenção com peça do cliente/mão de obra, manutenção com peça da BMITAG/preço único, manutenção com peça da BMITAG cobrada separadamente e venda de mercadoria fora da OS, quando praticados.",
               "Para manutenção com peças, a contabilidade enfrenta expressamente a ressalva do subitem 14.01 da LC 116/2003, inclusive no preço único; se houver ISS e ICMS, define critério documental e de valoração sem inventar rateio.",
               "Lacunas e limitações estão explícitas."
             ],
             "tests": [
               "Walkthrough com exemplos sintéticos.",
-              "Revisão cruzada com ADR fiscal."
+              "Revisão cruzada com .workflow/FISCAL_PROD_ROADMAP.md e tickets fiscais dependentes."
             ],
             "testInstructions": {
               "prerequisites": [
-                "Documento da contabilidade."
+                "Relato operacional, exemplos e orientação escrita da contabilidade para a OS 63 já recebidos; vínculos redigidos entre OS e nota(s) e decisões restantes são necessários para o aceite."
               ],
               "steps": [
-                "Revisar cenários.",
-                "Registrar aceite humano."
+                "Revisar cenários e lacunas de docs/fiscal/AP-FISC-ACCOUNTING-EXT-001-gerencie-aqui.md.",
+                "Registrar aceite humano e vigência da decisão."
               ],
               "expectedResultAndEvidence": [
-                "Matriz versionada sem dados pessoais desnecessários."
+                "Matriz versionada sem dados pessoais desnecessários, com referência redigida a OS/documentos e fundamento contábil."
               ],
               "dataImpact": "Nenhum.",
               "cleanupAndRollback": [
@@ -7665,6 +7668,7 @@
             ],
             "risks": [
               "Começar provider sem matriz.",
+              "Tomar tipo de item, NCM provisório ou configuração legado como validação contábil.",
               "Extrapolar BMITAG para todo Brasil."
             ]
           },
