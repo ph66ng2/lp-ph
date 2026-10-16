@@ -1,6 +1,6 @@
 {
   "captureMode": "static-github-api-snapshot",
-  "capturedAt": "2026-10-15T09:21:14+00:00",
+  "capturedAt": "2026-10-16T04:54:49+00:00",
   "repositories": [
     {
       "owner": "ph66ng2",
@@ -13,7 +13,7 @@
       "commit": "cc4f43e691d5c0810e86c5e32e5733d0aed795d7",
       "commitAt": "2026-10-09T11:48:24Z",
       "fileBlobSha": "abfa845850f2514e73a9313164f39f397e281825",
-      "capturedAt": "2026-10-15T09:21:14+00:00",
+      "capturedAt": "2026-10-16T04:54:49+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6800,7 +6800,7 @@
         ]
       },
       "readError": "HTTP Error 404: Not Found",
-      "lastAttemptAt": "2026-10-15T09:21:14+00:00"
+      "lastAttemptAt": "2026-10-16T04:54:49+00:00"
     },
     {
       "owner": "ph66ng2",
@@ -6810,10 +6810,10 @@
       "readStatus": "ok",
       "visibility": "public",
       "defaultBranch": "main",
-      "commit": "481629f94b9fce59fdf357717eed76f47d4a5154",
-      "commitAt": "2026-10-15T08:08:21Z",
-      "fileBlobSha": "ac13ba99d570cb0f8d00adc5a90e40848a3acad1",
-      "capturedAt": "2026-10-15T09:21:14+00:00",
+      "commit": "4a149468d2c4e72784a4c1f7c56a2c1e92a85e55",
+      "commitAt": "2026-10-16T02:35:39Z",
+      "fileBlobSha": "2648d78ab58bc0f3b2c7804e8ef17451cc96557a",
+      "capturedAt": "2026-10-16T04:54:49+00:00",
       "changes": {
         "comparedToPreviousCapture": true,
         "addedIds": [],
@@ -6821,7 +6821,7 @@
         "removedImpacts": [],
         "titleChanges": []
       },
-      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/481629f94b9fce59fdf357717eed76f47d4a5154/.workflow/workflow.json",
+      "sourceUrl": "https://github.com/ph66ng2/AutoPlatform/blob/4a149468d2c4e72784a4c1f7c56a2c1e92a85e55/.workflow/workflow.json",
       "workflow": {
         "project": "AutoPlatform — backend Fiscal e depois Financeiro do AutoOS",
         "roadmap": {
@@ -7675,7 +7675,7 @@
           {
             "id": "AP-FISC-CORE-001",
             "title": "Criar núcleo fiscal provider-neutral",
-            "status": "ready",
+            "status": "review",
             "blockedBy": [
               "AP-CONTRACT-002"
             ],
